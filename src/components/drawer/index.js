@@ -18,7 +18,7 @@ const DEFAULT_BOUNCINESS = 0;
  * @description: Drawer Component
  * @important: If your app works with RNN, your screen must be wrapped
  * with gestureHandlerRootHOC from 'react-native-gesture-handler'. see
- * @importantLink: https://kmagiera.github.io/react-native-gesture-handler/docs/getting-started.html#with-wix-react-native-navigation-https-githubcom-wix-react-native-navigation
+ * @importantLink: https://docs.swmansion.com/react-native-gesture-handler/docs/installation
  * @gif: https://github.com/wix/react-native-ui-lib/blob/master/demo/showcase/Drawer/Drawer.gif?raw=true
  */
 class Drawer extends PureComponent {
