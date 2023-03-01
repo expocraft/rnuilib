@@ -54,9 +54,14 @@ class Text extends PureComponent {
     const {modifiers, style, center, uppercase, underline, children, forwardedRef, ...others} = this.props;
     const color = this.props.color || modifiers.color;
     const {margins, typography, backgroundColor, flexStyle} = modifiers;
+
     const textStyle = [
-      style,
       styles.container,
+      center && styles.centered,
+      uppercase && styles.uppercase,
+      underline && styles.underline,
+      underline && styles.underline,
+      style,
       typography,
       color && {
         color
@@ -65,10 +70,7 @@ class Text extends PureComponent {
         backgroundColor
       },
       flexStyle,
-      margins,
-      center && styles.centered,
-      uppercase && styles.uppercase,
-      underline && styles.underline
+      margins
     ];
     const TextContainer = this.TextContainer;
     return (
