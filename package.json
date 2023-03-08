@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/expocraft/core"
+    "url": "https://github.com/expocraft/rnuilib"
   },
   "scripts": {
     "start": "watchman watch-del-all && export DEV_MODE=true && react-native start",
