@@ -1,7 +1,7 @@
-import { useModifiers, useThemeProps } from "../../hooks";
-import React, { useEffect, useMemo, useState } from 'react';
-import { View as RNView, SafeAreaView, Animated } from 'react-native';
-import { Constants } from "../../commons/new";
+import {useModifiers, useThemeProps} from '../../hooks';
+import React, {useEffect, useMemo, useState} from 'react';
+import {View as RNView, SafeAreaView, Animated} from 'react-native';
+import {Constants} from '../../commons/new';
 const modifiersOptions = {
   backgroundColor: true,
   borderRadius: true,
@@ -56,31 +56,59 @@ function View(props, ref) {
       }, renderDelay);
     }
   }, []);
+
   const ViewContainer = useMemo(() => {
     const container = useSafeArea && Constants.isIOS ? SafeAreaView : RNView;
     if (reanimated) {
-      const {
-        default: Reanimated
-      } = require('react-native-reanimated');
+      const {default: Reanimated} = require('react-native-reanimated');
       return Reanimated.createAnimatedComponent(container);
     } else if (animated) {
       return Animated.createAnimatedComponent(container);
     }
     return container;
   }, [useSafeArea, animated, reanimated]);
+
   const _style = useMemo(() => {
     const backgroundColor = backgroundColorProps || backgroundColorModifiers;
-    return [backgroundColor && {
-      backgroundColor
-    }, borderRadius && {
-      borderRadius
-    }, flexStyle, positionStyle, paddings, margins, alignments, style];
-  }, [backgroundColorProps, backgroundColorModifiers, borderRadius, flexStyle, positionStyle, paddings, margins, alignments, style]);
+    return [
+      borderRadius && {
+        borderRadius
+      },
+      flexStyle,
+      positionStyle,
+      paddings,
+      margins,
+      alignments,
+      style,
+      backgroundColor && {
+        backgroundColor
+      }
+    ];
+  }, [
+    backgroundColorProps,
+    backgroundColorModifiers,
+    borderRadius,
+    flexStyle,
+    positionStyle,
+    paddings,
+    margins,
+    alignments,
+    style
+  ]);
+
   if (!ready) {
     return null;
   }
-  return <ViewContainer accessibilityElementsHidden={inaccessible} importantForAccessibility={inaccessible ? 'no-hide-descendants' : undefined} {...others} style={_style} ref={ref}>
+  return (
+    <ViewContainer
+      accessibilityElementsHidden={inaccessible}
+      importantForAccessibility={inaccessible ? 'no-hide-descendants' : undefined}
+      {...others}
+      style={_style}
+      ref={ref}
+    >
       {children}
-    </ViewContainer>;
+    </ViewContainer>
+  );
 }
 export default React.forwardRef(View);
