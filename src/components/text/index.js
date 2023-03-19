@@ -50,7 +50,6 @@ class Text extends PureComponent {
     }
     return children;
   }
-
   render() {
     const {modifiers, style, center, uppercase, underline, children, forwardedRef, ...others} = this.props;
     const color = this.props.color || modifiers.color;

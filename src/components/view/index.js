@@ -56,7 +56,6 @@ function View(props, ref) {
       }, renderDelay);
     }
   }, []);
-
   const ViewContainer = useMemo(() => {
     const container = useSafeArea && Constants.isIOS ? SafeAreaView : RNView;
     if (reanimated) {
@@ -67,10 +66,12 @@ function View(props, ref) {
     }
     return container;
   }, [useSafeArea, animated, reanimated]);
-
   const _style = useMemo(() => {
     const backgroundColor = backgroundColorProps || backgroundColorModifiers;
     return [
+      backgroundColor && {
+        backgroundColor
+      },
       borderRadius && {
         borderRadius
       },
@@ -79,10 +80,7 @@ function View(props, ref) {
       paddings,
       margins,
       alignments,
-      style,
-      backgroundColor && {
-        backgroundColor
-      }
+      style
     ];
   }, [
     backgroundColorProps,
@@ -95,7 +93,6 @@ function View(props, ref) {
     alignments,
     style
   ]);
-
   if (!ready) {
     return null;
   }
