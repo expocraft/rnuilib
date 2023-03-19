@@ -4,7 +4,7 @@ import { AvatarProps } from '../avatar';
 import { BadgeProps } from '../badge';
 import { TouchableOpacityProps } from '../touchableOpacity';
 import { IconProps } from '../icon';
-export declare type ChipProps = ViewProps & TouchableOpacityProps & {
+export type ChipProps = ViewProps & TouchableOpacityProps & {
     /**
      * Chip's size. Number or a width and height object.
      */

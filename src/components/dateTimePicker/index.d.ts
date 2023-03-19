@@ -3,7 +3,7 @@ import { StyleProp, ViewStyle } from 'react-native';
 import { BaseComponentInjectedProps } from '../../commons/new';
 import { DialogProps } from '../dialog';
 import type { TextFieldProps } from '../../incubator/TextField';
-export declare type DateTimePickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
+export type DateTimePickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
     /**
      * The type of picker to display ('date' or 'time')
      */
@@ -87,7 +87,7 @@ export declare type DateTimePickerProps = Omit<TextFieldProps, 'value' | 'onChan
      */
     migrateTextField?: boolean;
 };
-declare type DateTimePickerPropsInternal = DateTimePickerProps & BaseComponentInjectedProps;
+type DateTimePickerPropsInternal = DateTimePickerProps & BaseComponentInjectedProps;
 /**
  * @description: Date and Time Picker Component that wraps RNDateTimePicker for date and time modes.
  * @example: https://github.com/wix/react-native-ui-lib/blob/master/demo/src/screens/componentScreens/DateTimePickerScreen.tsx

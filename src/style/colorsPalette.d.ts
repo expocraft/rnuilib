@@ -98,7 +98,4 @@ declare const extraFixColorsMap: {
     '#000': string;
     '#fff': string;
 };
-declare const themeColors: {
-    primary: string;
-};
-export { colorsPalette, themeColors, extraFixColorsMap };
+export { colorsPalette, extraFixColorsMap };

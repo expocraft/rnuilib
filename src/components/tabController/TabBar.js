@@ -62,7 +62,6 @@ const TabBar = props => {
     currentPage,
     targetPage,
     initialIndex,
-    selectedIndex,
     containerWidth: contextContainerWidth
   } = context;
   const containerWidth = useMemo(() => {
@@ -86,7 +85,7 @@ const TabBar = props => {
     // @ts-expect-error TODO: typing bug
     scrollViewRef: tabBar,
     itemsCount,
-    selectedIndex: selectedIndex || initialIndex,
+    selectedIndex: initialIndex,
     containerWidth,
     offsetType: centerSelected ? useScrollToItem.offsetType.CENTER : useScrollToItem.offsetType.DYNAMIC
   });

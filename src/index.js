@@ -25,12 +25,12 @@ var _exportNames = {
   BaseComponent: true,
   PureBaseComponent: true,
   TextFieldProps: true,
+  TextFieldMethods: true,
+  TextFieldRef: true,
+  TextFieldValidationMessagePosition: true,
   FieldContextType: true,
   ToastProps: true,
   ToastPresets: true,
-  WheelPickerProps: true,
-  WheelPickerItemProps: true,
-  WheelPickerAlign: true,
   PanViewProps: true,
   PanViewDirections: true,
   PanViewDismissThreshold: true,
@@ -198,8 +198,6 @@ var _exportNames = {
   TabControllerProps: true,
   TabControllerItemProps: true,
   TabControllerImperativeMethods: true,
-  TabBar: true,
-  TabBarProps: true,
   Timeline: true,
   TimelineProps: true,
   TimelinePointProps: true,
@@ -222,7 +220,10 @@ var _exportNames = {
   WizardStepStates: true,
   WizardStepConfig: true,
   WizardStepsConfig: true,
-  WheelPickerDialog: true
+  WheelPicker: true,
+  WheelPickerProps: true,
+  WheelPickerItemProps: true,
+  WheelPickerAlign: true
 };
 Object.defineProperty(exports, "ActionBar", {
   enumerable: true,
@@ -1259,18 +1260,6 @@ Object.defineProperty(exports, "SwitchProps", {
     return _switch().SwitchProps;
   }
 });
-Object.defineProperty(exports, "TabBar", {
-  enumerable: true,
-  get: function () {
-    return _tabBar().default;
-  }
-});
-Object.defineProperty(exports, "TabBarProps", {
-  enumerable: true,
-  get: function () {
-    return _tabBar().TabBarProps;
-  }
-});
 Object.defineProperty(exports, "TabController", {
   enumerable: true,
   get: function () {
@@ -1313,10 +1302,28 @@ Object.defineProperty(exports, "TextField", {
     return _TextFieldMigrator().default;
   }
 });
+Object.defineProperty(exports, "TextFieldMethods", {
+  enumerable: true,
+  get: function () {
+    return Incubator().TextFieldMethods;
+  }
+});
 Object.defineProperty(exports, "TextFieldProps", {
   enumerable: true,
   get: function () {
     return Incubator().TextFieldProps;
+  }
+});
+Object.defineProperty(exports, "TextFieldRef", {
+  enumerable: true,
+  get: function () {
+    return Incubator().TextFieldRef;
+  }
+});
+Object.defineProperty(exports, "TextFieldValidationMessagePosition", {
+  enumerable: true,
+  get: function () {
+    return Incubator().TextFieldValidationMessagePosition;
   }
 });
 Object.defineProperty(exports, "TextProps", {
@@ -1421,28 +1428,28 @@ Object.defineProperty(exports, "ViewProps", {
     return _view().ViewProps;
   }
 });
+Object.defineProperty(exports, "WheelPicker", {
+  enumerable: true,
+  get: function () {
+    return _WheelPicker().default;
+  }
+});
 Object.defineProperty(exports, "WheelPickerAlign", {
   enumerable: true,
   get: function () {
-    return Incubator().WheelPickerAlign;
-  }
-});
-Object.defineProperty(exports, "WheelPickerDialog", {
-  enumerable: true,
-  get: function () {
-    return _wheelPickerDialog().default;
+    return _WheelPicker().WheelPickerAlign;
   }
 });
 Object.defineProperty(exports, "WheelPickerItemProps", {
   enumerable: true,
   get: function () {
-    return Incubator().WheelPickerItemProps;
+    return _WheelPicker().WheelPickerItemProps;
   }
 });
 Object.defineProperty(exports, "WheelPickerProps", {
   enumerable: true,
   get: function () {
-    return Incubator().WheelPickerProps;
+    return _WheelPicker().WheelPickerProps;
   }
 });
 Object.defineProperty(exports, "WithScrollEnablerProps", {
@@ -2116,13 +2123,6 @@ function _tabController() {
   };
   return data;
 }
-function _tabBar() {
-  const data = _interopRequireWildcard(require("./components/tabBar"));
-  _tabBar = function () {
-    return data;
-  };
-  return data;
-}
 function _timeline() {
   const data = _interopRequireWildcard(require("./components/timeline"));
   _timeline = function () {
@@ -2179,9 +2179,9 @@ function _wizard() {
   };
   return data;
 }
-function _wheelPickerDialog() {
-  const data = _interopRequireDefault(require("./components/wheelPickerDialog"));
-  _wheelPickerDialog = function () {
+function _WheelPicker() {
+  const data = _interopRequireWildcard(require("./components/WheelPicker"));
+  _WheelPicker = function () {
     return data;
   };
   return data;

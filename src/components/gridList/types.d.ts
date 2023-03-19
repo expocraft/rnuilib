@@ -26,4 +26,4 @@ export interface GridListBaseProps extends Pick<ScrollViewProps, 'contentContain
      */
     containerWidth?: number;
 }
-export declare type GridListProps<T = any> = GridListBaseProps & FlatListProps<T>;
+export type GridListProps<T = any> = GridListBaseProps & FlatListProps<T>;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollViewProps } from 'react-native';
 import { FaderProps } from '../fader';
-export declare type FadedScrollViewProps = ScrollViewProps & {
+export type FadedScrollViewProps = ScrollViewProps & {
     /**
      * Show a fader at the start of the scroll
      */

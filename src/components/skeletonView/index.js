@@ -127,49 +127,26 @@ class SkeletonView extends Component {
       shimmerStyle
     };
   };
-  get size() {
-    const {
-      listProps,
-      size
-    } = this.props;
-    return listProps?.size || size;
-  }
   get contentSize() {
-    return this.size === Size.LARGE ? 48 : 40;
-  }
-  get contentType() {
     const {
-      listProps,
-      contentType
+      listProps
     } = this.props;
-    return listProps?.contentType || contentType;
-  }
-  get hideSeparator() {
-    const {
-      listProps,
-      hideSeparator
-    } = this.props;
-    return listProps?.hideSeparator || hideSeparator;
-  }
-  get showLastSeparator() {
-    const {
-      listProps,
-      showLastSeparator
-    } = this.props;
-    return listProps?.showLastSeparator || showLastSeparator;
+    return listProps?.size === Size.LARGE ? 48 : 40;
   }
   renderListItemLeftContent = () => {
-    const contentType = this.contentType;
+    const {
+      listProps
+    } = this.props;
+    const contentType = listProps?.contentType;
     if (contentType) {
-      const contentSize = this.contentSize;
       const circleOverride = contentType === ContentType.AVATAR;
       const style = {
-        marginRight: this.size === Size.LARGE ? 16 : 14
+        marginRight: listProps?.size === Size.LARGE ? 16 : 14
       };
       return <ShimmerPlaceholder {...this.getDefaultSkeletonProps({
         circleOverride,
         style
-      })} width={contentSize} height={contentSize} />;
+      })} width={this.contentSize} height={this.contentSize} />;
     }
   };
   renderStrip = (isMain, length, marginTop) => {
@@ -181,14 +158,12 @@ class SkeletonView extends Component {
     const {
       listProps
     } = this.props;
-    const contentType = this.contentType;
-    const size = this.size;
-    const hideSeparator = this.hideSeparator;
-    const customLengths = contentType === ContentType.AVATAR ? [undefined, 50] : undefined;
+    const size = listProps?.size;
+    const customLengths = listProps?.contentType === ContentType.AVATAR ? [undefined, 50] : undefined;
     const height = size === Size.LARGE ? 95 : 75;
     const lengths = _merge([90, 180, 160], customLengths);
     const topMargins = [0, size === Size.LARGE ? 16 : 8, 8];
-    return <View flex height={height} centerV style={!hideSeparator && Dividers.d10} row>
+    return <View flex height={height} centerV style={!listProps?.hideSeparator && Dividers.d10} row>
         <View>
           {this.renderStrip(true, lengths[0], topMargins[0])}
           {this.renderStrip(false, lengths[1], topMargins[1])}
@@ -237,11 +212,12 @@ class SkeletonView extends Component {
       renderContent,
       showContent,
       style,
+      testID,
       ...others
     } = this.props;
     const data = showContent && _isFunction(renderContent) ? renderContent(this.props) : children;
-    return <View style={style} {...this.contentAccessibilityProps} {...others}>
-        <ShimmerPlaceholder {...this.getDefaultSkeletonProps()} {...others}>
+    return <View style={style} {...this.contentAccessibilityProps} testID={testID} {...others}>
+        <ShimmerPlaceholder {...this.getDefaultSkeletonProps()} testID={`${testID}.shimmer`} {...others}>
           {showContent && data}
         </ShimmerPlaceholder>
       </View>;
@@ -253,8 +229,7 @@ class SkeletonView extends Component {
     const {
       children,
       renderContent,
-      customValue,
-      contentData
+      customValue
     } = this.props;
     if (isAnimating) {
       return <Animated.View style={{
@@ -263,8 +238,7 @@ class SkeletonView extends Component {
           {skeleton}
         </Animated.View>;
     } else if (_isFunction(renderContent)) {
-      const _customValue = customValue || contentData;
-      return renderContent(_customValue);
+      return renderContent(customValue);
     } else {
       return children;
     }
@@ -299,13 +273,8 @@ class SkeletonView extends Component {
       renderContent,
       showContent,
       customValue,
-      contentData,
       template,
       listProps,
-      size,
-      contentType,
-      hideSeparator,
-      showLastSeparator,
       height,
       width,
       colors,
@@ -319,13 +288,8 @@ class SkeletonView extends Component {
       showContent,
       renderContent,
       customValue,
-      contentData,
       template,
       listProps,
-      size,
-      contentType,
-      hideSeparator,
-      showLastSeparator,
       height,
       width,
       colors,
@@ -338,7 +302,11 @@ class SkeletonView extends Component {
       return <View {...others}>
           {_times(times, index => {
           const key = timesKey ? `${timesKey}-${index}` : `${index}`;
-          return <SkeletonView {...passedProps} key={key} testID={`${testID}-${index}`} renderContent={index === 0 ? renderContent : this.renderNothing} hideSeparator={this.hideSeparator || !this.showLastSeparator && index === times - 1} times={undefined} />;
+          const _listProps = {
+            ...listProps,
+            hideSeparator: listProps?.hideSeparator || !listProps?.showLastSeparator && index === times - 1
+          };
+          return <SkeletonView {...passedProps} listProps={_listProps} key={key} testID={`${testID}-${index}`} renderContent={index === 0 ? renderContent : this.renderNothing} times={undefined} />;
         })}
         </View>;
     } else {

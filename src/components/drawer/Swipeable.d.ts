@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Animated } from 'react-native';
 import { State } from 'react-native-gesture-handler';
-declare type Props = {
+type Props = {
     children: any;
     friction: number;
     leftThreshold?: number;
@@ -37,14 +37,14 @@ declare type Props = {
     childrenContainerStyle?: Object;
     disableHaptic?: boolean;
 };
-declare type State = {
+type State = {
     dragX: Animated.Value;
     rowTranslation: Animated.Value;
     leftWidth: number | typeof undefined;
     rightOffset: number | typeof undefined;
     rowWidth: number | typeof undefined;
 };
-export declare type SwipeableProps = Props;
+export type SwipeableProps = Props;
 export default class Swipeable extends Component<Props, State> {
     static displayName: string;
     static defaultProps: {

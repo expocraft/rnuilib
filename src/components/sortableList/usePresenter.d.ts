@@ -2,7 +2,7 @@ export declare const animationConfig: {
     easing: (value: number) => number;
     duration: number;
 };
-declare type ItemsOrder = string[];
+type ItemsOrder = string[];
 declare const usePresenter: () => {
     getTranslationByIndexChange: (newIndex: number, oldIndex: number, itemHeight: number) => number;
     getIndexByPosition: (positionY: number, itemHeight: number) => number;

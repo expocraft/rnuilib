@@ -1,4 +1,4 @@
-export declare type ConnectionStatusBarProps = {
+export type ConnectionStatusBarProps = {
     /**
      * Text to show as the status
      */
@@ -16,7 +16,7 @@ export declare type ConnectionStatusBarProps = {
      */
     useAbsolutePosition?: boolean;
 };
-export declare type ConnectionStatusBarState = {
+export type ConnectionStatusBarState = {
     type?: string;
     isConnected: boolean;
     isCancelled: boolean;

@@ -20,6 +20,7 @@ export function isItemSelected(childValue, selectedValue) {
   let isSelected = false;
   if (Array.isArray(selectedValue)) {
     isSelected = !!_find(selectedValue, v => {
+      // @ts-expect-error TODO: fix after removing migrate prop completely
       return v === childValue || typeof v === 'object' && v?.value === childValue;
     });
   } else {

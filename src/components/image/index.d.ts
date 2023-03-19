@@ -3,7 +3,7 @@ import { ImageProps as RNImageProps, NativeSyntheticEvent, ImageErrorEventData }
 import { ImagePropTypes } from 'deprecated-react-native-prop-types';
 import { ForwardRefInjectedProps, BaseComponentInjectedProps, MarginModifiers } from '../../commons/new';
 import { OverlayTypeType, OverlayIntensityType } from '../overlay';
-export declare type ImageProps = RNImageProps & MarginModifiers & {
+export type ImageProps = RNImageProps & MarginModifiers & {
     /**
      * custom source transform handler for manipulating the image source (great for size control)
      */
@@ -72,8 +72,8 @@ export declare type ImageProps = RNImageProps & MarginModifiers & {
      */
     height?: string | number;
 };
-declare type Props = ImageProps & ForwardRefInjectedProps & BaseComponentInjectedProps;
-declare type State = {
+type Props = ImageProps & ForwardRefInjectedProps & BaseComponentInjectedProps;
+type State = {
     error: boolean;
     prevSource: ImagePropTypes.source;
 };
@@ -119,7 +119,7 @@ declare const _default: React.ComponentClass<RNImageProps & Partial<Record<"marg
     /**
      * custom source transform handler for manipulating the image source (great for size control)
      */
-    sourceTransformer?: ((props: any) => any) | undefined;
+    sourceTransformer?: ((props: any) => ImagePropTypes.source) | undefined;
     /**
      * if provided image source will be driven from asset name
      */

@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
 import { ColorPickerDialogProps } from './ColorPickerDialog';
 interface Props extends ColorPickerDialogProps {
     /**
@@ -33,14 +32,13 @@ interface Props extends ColorPickerDialogProps {
         doneButton?: string;
         input?: string;
     };
-    style?: StyleProp<ViewStyle>;
     testID?: string;
     /**
-     * Give the ColorPicker a background color
+     * The ColorPicker's background color
      */
     backgroundColor?: string;
 }
-export declare type ColorPickerProps = Props;
+export type ColorPickerProps = Props;
 /**
  * @description: A color picker component
  * @example: https://github.com/wix/react-native-ui-lib/blob/master/demo/src/screens/componentScreens/ColorPickerScreen.tsx

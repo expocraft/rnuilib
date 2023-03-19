@@ -1,5 +1,5 @@
 import React from 'react';
-export declare type ExpandableSectionProps = {
+export type ExpandableSectionProps = {
     /**
      * expandableSection header element
      */

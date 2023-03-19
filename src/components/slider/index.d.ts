@@ -1,12 +1,12 @@
 import React, { PureComponent, ReactElement } from 'react';
 import { Animated, StyleProp, ViewStyle, PanResponderGestureState, GestureResponderEvent, LayoutChangeEvent, AccessibilityActionEvent, AccessibilityRole, View as RNView } from 'react-native';
 import { ThumbProps } from './Thumb';
-export declare type SliderOnValueChange = (value: number) => void;
-export declare type SliderOnRangeChange = (values: {
+export type SliderOnValueChange = (value: number) => void;
+export type SliderOnRangeChange = (values: {
     min: number;
     max: number;
 }) => void;
-export declare type SliderProps = Omit<ThumbProps, 'ref'> & {
+export type SliderProps = Omit<ThumbProps, 'ref'> & {
     /**
      * Initial value
      */
@@ -103,11 +103,11 @@ interface State {
     thumbActiveAnimation: Animated.Value;
     measureCompleted: boolean;
 }
-declare type Measurements = {
+type Measurements = {
     width: number;
     height: number;
 };
-declare type MeasuredVariableName = 'containerSize' | 'trackSize' | 'thumbSize';
+type MeasuredVariableName = 'containerSize' | 'trackSize' | 'thumbSize';
 declare const defaultProps: {
     value: number;
     minimumValue: number;

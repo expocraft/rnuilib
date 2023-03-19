@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInputProps } from 'react-native';
 import validators from './validators';
-export declare type Validator = Function | keyof typeof validators;
+export type Validator = Function | keyof typeof validators;
 interface FieldState {
     value?: string;
     isFocused: boolean;

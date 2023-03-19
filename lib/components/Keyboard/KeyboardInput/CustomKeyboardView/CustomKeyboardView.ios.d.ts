@@ -1,5 +1,5 @@
 import CustomKeyboardViewBase, { CustomKeyboardViewBaseProps } from './../CustomKeyboardViewBase';
-export declare type CustomKeyboardViewProps = CustomKeyboardViewBaseProps & {
+export type CustomKeyboardViewProps = CustomKeyboardViewBaseProps & {
     /**
      * The reference to the actual text input (or the keyboard may not reset when instructed to, etc.)
      */

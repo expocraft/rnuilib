@@ -1,9 +1,9 @@
 import { ShadowStyleIOS } from 'react-native';
-declare type Shadow = {
+type Shadow = {
     top?: ShadowStyleIOS;
     bottom?: ShadowStyleIOS;
 } & ShadowStyleIOS;
-declare type customPresets = Record<string, Shadow>;
+type customPresets = Record<string, Shadow>;
 declare const _default: {
     sh10: {
         top: {
@@ -188,78 +188,6 @@ declare const _default: {
         };
     };
     grey40: {
-        top: {
-            shadowColor: string;
-            shadowOpacity: number;
-            shadowRadius: number;
-            shadowOffset: {
-                height: number;
-                width: number;
-            };
-        };
-        bottom: {
-            shadowColor: string;
-            shadowOpacity: number;
-            shadowRadius: number;
-            shadowOffset: {
-                height: number;
-                width: number;
-            };
-        };
-    };
-    dark10: {
-        top: {
-            shadowColor: string;
-            shadowOpacity: number;
-            shadowRadius: number;
-        };
-        bottom: {
-            shadowColor: string;
-            shadowOpacity: number;
-            shadowRadius: number;
-            shadowOffset: {
-                height: number;
-                width: number;
-            };
-        };
-    };
-    dark20: {
-        top: {
-            shadowColor: string;
-            shadowOpacity: number;
-            shadowRadius: number;
-        };
-        bottom: {
-            shadowColor: string;
-            shadowOpacity: number;
-            shadowRadius: number;
-            shadowOffset: {
-                height: number;
-                width: number;
-            };
-        };
-    };
-    dark30: {
-        top: {
-            shadowColor: string;
-            shadowOpacity: number;
-            shadowRadius: number;
-            shadowOffset: {
-                height: number;
-                width: number;
-            };
-        };
-        bottom: {
-            shadowColor: string;
-            shadowOpacity: number;
-            shadowRadius: number;
-            shadowOffset: {
-                height: number;
-                width: number;
-            };
-        };
-    };
-    dark40: {
         top: {
             shadowColor: string;
             shadowOpacity: number;

@@ -1,6 +1,6 @@
 import { Animated } from 'react-native';
 import { ToastProps } from '../types';
-declare type UseToastAnimationProps = Pick<ToastProps, 'visible' | 'position' | 'onAnimationEnd' | 'enableHapticFeedback'> & {
+type UseToastAnimationProps = Pick<ToastProps, 'visible' | 'position' | 'onAnimationEnd' | 'enableHapticFeedback'> & {
     toastHeight?: number;
     playAccessibilityFeatures: () => void;
     setTimer: () => void;

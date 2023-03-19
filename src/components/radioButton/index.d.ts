@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextStyle, StyleProp, ImageSourcePropType, ImageStyle, ViewStyle, ViewProps } from 'react-native';
 import { RadioGroupContextProps } from '../radioGroup/RadioGroupContext';
-export declare type RadioButtonProps = RadioGroupContextProps & ViewProps & {
+export type RadioButtonProps = RadioGroupContextProps & ViewProps & {
     /**
      * The identifier value of the radio button. must be different than other RadioButtons in the same group
      */
@@ -50,10 +50,6 @@ export declare type RadioButtonProps = RadioGroupContextProps & ViewProps & {
      * Should the icon be on the right side of the label
      */
     iconOnRight?: boolean;
-    /**
-     * @deprecated The content is on right by default, for content on left use 'contentOnLeft'
-     */
-    contentOnRight?: boolean;
     /**
      * Should the content be rendered left to the button
      */
@@ -112,10 +108,6 @@ declare const _default: React.ComponentClass<RadioGroupContextProps & ViewProps 
      * Should the icon be on the right side of the label
      */
     iconOnRight?: boolean | undefined;
-    /**
-     * @deprecated The content is on right by default, for content on left use 'contentOnLeft'
-     */
-    contentOnRight?: boolean | undefined;
     /**
      * Should the content be rendered left to the button
      */

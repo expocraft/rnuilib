@@ -1,13 +1,14 @@
-import React, {useContext, useMemo} from 'react';
-import {TextInput as RNTextInput, StyleSheet, Platform} from 'react-native';
-import {Constants} from '../../commons/new';
-import {getColorByState} from './Presenter';
-import {Colors} from '../../style';
-import FieldContext from './FieldContext';
-import useImperativeInputHandle from './useImperativeInputHandle';
+import React, { useContext, useMemo } from 'react';
+import { TextInput as RNTextInput, StyleSheet, Platform } from 'react-native';
+import { Constants } from "../../commons/new";
+import { getColorByState } from "./Presenter";
+import { Colors } from "../../style";
+import FieldContext from "./FieldContext";
+import useImperativeInputHandle from "./useImperativeInputHandle";
 const DEFAULT_INPUT_COLOR = {
   default: Colors.$textDefault,
-  disabled: Colors.$textDisabled
+  disabled: Colors.$textDisabled,
+  readonly: Colors.$textNeutral
 };
 const Input = ({
   style,
@@ -16,6 +17,7 @@ const Input = ({
   forwardedRef,
   formatter,
   useGestureHandlerInput,
+  readonly,
   ...props
 }) => {
   const inputRef = useImperativeInputHandle(forwardedRef, {
@@ -26,36 +28,24 @@ const Input = ({
   const inputColor = getColorByState(color, context);
   const placeholderTextColor = getColorByState(props.placeholderTextColor, context);
   const value = formatter && !context.isFocused ? formatter(props.value) : props.value;
+  const disabled = props.editable === false || readonly;
   const TextInput = useMemo(() => {
     if (useGestureHandlerInput) {
-      const {TextInput: GestureTextInput} = require('react-native-gesture-handler');
+      const {
+        TextInput: GestureTextInput
+      } = require('react-native-gesture-handler');
       return GestureTextInput;
     } else {
       return RNTextInput;
     }
   }, [useGestureHandlerInput]);
-  return (
-    <TextInput
-      style={[
-        styles.input,
-        !!inputColor && {
-          color: inputColor
-        },
-        style,
-        Constants.isWeb && styles.webStyle
-      ]}
-      {...props}
-      value={value}
-      placeholder={placeholder}
-      placeholderTextColor={placeholderTextColor}
-      // @ts-expect-error
-      ref={inputRef}
-      underlineColorAndroid="transparent"
-      accessibilityState={{
-        disabled: props.editable === false
-      }}
-    />
-  );
+  return <TextInput style={[styles.input, !!inputColor && {
+    color: inputColor
+  }, style, Constants.isWeb && styles.webStyle]} {...props} editable={!disabled} value={value} placeholder={placeholder} placeholderTextColor={placeholderTextColor}
+  // @ts-expect-error
+  ref={inputRef} underlineColorAndroid="transparent" accessibilityState={{
+    disabled
+  }} />;
 };
 const styles = StyleSheet.create({
   input: {
@@ -71,11 +61,11 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center'
       }
     })
+  },
+  webStyle: {
+    // @ts-expect-error
+    outlineWidth: 0
   }
-  // webStyle: {
-  //   // @ts-expect-error
-  //   outlineWidth: 0
-  // }
 });
 Input.displayName = 'Incubator.TextField';
 export default Input;

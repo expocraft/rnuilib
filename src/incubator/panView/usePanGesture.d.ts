@@ -1,9 +1,9 @@
 /// <reference types="react-native-reanimated" />
 import { PanningDirections, PanningDirectionsEnum, PanningDismissThreshold } from './panningUtil';
 import type { HiddenLocation } from '../hooks/useHiddenLocation';
-export declare type PanViewDirections = PanningDirections;
+export type PanViewDirections = PanningDirections;
 export declare const PanViewDirectionsEnum: typeof PanningDirectionsEnum;
-export declare type PanViewDismissThreshold = PanningDismissThreshold;
+export type PanViewDismissThreshold = PanningDismissThreshold;
 export declare const DEFAULT_DIRECTIONS: PanningDirectionsEnum[];
 export interface PanGestureProps {
     /**

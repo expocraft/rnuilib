@@ -2,18 +2,18 @@ import _ from 'lodash';
 import { OpaqueColorValue } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { Schemes, SchemeType } from './scheme';
-export declare type DesignToken = {
+export type DesignToken = {
     semantic?: [string];
     resource_paths?: [string];
     toString: Function;
 };
-export declare type TokensOptions = {
+export type TokensOptions = {
     primaryColor: string;
 };
-export declare type GetColorTintOptions = {
+export type GetColorTintOptions = {
     avoidReverseOnDark?: boolean;
 };
-export declare type GetColorByHexOptions = {
+export type GetColorByHexOptions = {
     validColors?: string[];
 };
 export declare class Colors {
@@ -74,7 +74,7 @@ export declare class Colors {
     generateColorPalette: ((color: string) => string[]) & _.MemoizedFunction;
     private generateDesignTokens;
     private shouldGenerateDarkerPalette;
-    isDark(colorValue: string | OpaqueColorValue): boolean;
+    isDark(colorValue: string | OpaqueColorValue, darkThreshold?: number): boolean;
     isValidHex(string: string): boolean;
     getHexString(color: tinycolor.ColorInput): string;
     getHSL(color?: string): tinycolor.ColorFormats.HSLA;
@@ -127,11 +127,7 @@ declare const colorObject: Colors & {
     yellow20: string;
     yellow30: string;
     yellow40: string;
-    yellow50: string; /**
-     * Load custom set of colors
-     * arguments:
-     * colors - map of keys and colors values e.g {grey10: '#20303C', grey20: '#43515C'}
-     */
+    yellow50: string;
     yellow60: string;
     yellow70: string;
     yellow80: string;
@@ -173,14 +169,16 @@ declare const colorObject: Colors & {
     violet40: string;
     violet50: string;
     violet60: string;
-    violet70: string;
+    violet70: string; /**
+     * Set color scheme for app
+     * arguments:
+     * scheme - color scheme e.g light/dark/default
+     */
     violet80: string;
     white: string;
     black: string;
     dark: string;
     transparent: string;
-} & {
-    primary: string;
 } & {
     $backgroundDefault: string;
     $backgroundElevated: string;
@@ -206,7 +204,11 @@ declare const colorObject: Colors & {
     $backgroundDangerLight: string;
     $backgroundDisabled: string;
     $backgroundDark: string;
-    $backgroundDarkElevated: string;
+    $backgroundDarkElevated: string; /**
+     * Load set of schemes for light/dark mode
+     * arguments:
+     * schemes - two sets of map of colors e.g {light: {screen: 'white'}, dark: {screen: 'black'}}
+     */
     $backgroundDarkActive: string;
     $backgroundInverted: string;
     $textDisabled: string;
@@ -233,6 +235,14 @@ declare const colorObject: Colors & {
     $iconSuccessLight: string;
     $iconMajor: string;
     $iconDanger: string;
+    /**
+     * Add alpha to hex or rgb color
+     * arguments:
+     * p1 - hex color / R part of RGB
+     * p2 - opacity / G part of RGB
+     * p3 - B part of RGB
+     * p4 - opacity
+     */
     $iconDangerLight: string;
     $iconDisabled: string;
     $outlineDefault: string;

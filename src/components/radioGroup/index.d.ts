@@ -1,7 +1,7 @@
 import React, { PureComponent, GetDerivedStateFromProps } from 'react';
 import { BaseComponentInjectedProps, ForwardRefInjectedProps } from '../../commons/new';
 import { ViewProps } from '../view';
-export declare type RadioGroupProps = ViewProps & {
+export type RadioGroupProps = ViewProps & {
     /**
      * The initial value of the selected radio button
      */
@@ -15,7 +15,7 @@ interface RadioGroupState {
     initialValue?: RadioGroupProps['initialValue'];
     value?: RadioGroupProps['initialValue'];
 }
-declare type Props = RadioGroupProps & BaseComponentInjectedProps & ForwardRefInjectedProps;
+type Props = RadioGroupProps & BaseComponentInjectedProps & ForwardRefInjectedProps;
 /**
  * @description: Wrap a group of Radio Buttons to automatically control their selection
  * @gif: https://github.com/wix/react-native-ui-lib/blob/master/demo/showcase/RadioButton/Default.gif?raw=true, https://github.com/wix/react-native-ui-lib/blob/master/demo/showcase/RadioButton/Alignment.gif?raw=true, https://github.com/wix/react-native-ui-lib/blob/master/demo/showcase/RadioButton/Custom.gif?raw=true

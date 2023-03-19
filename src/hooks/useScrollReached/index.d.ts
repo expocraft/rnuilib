@@ -1,5 +1,5 @@
 import { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
-export declare type ScrollEnablerProps = {
+export type ScrollEnablerProps = {
     /**
      * Whether the scroll is horizontal (default is false).
      */
@@ -10,7 +10,7 @@ export declare type ScrollEnablerProps = {
      */
     threshold?: number;
 };
-export declare type ScrollEnablerResultProps = {
+export type ScrollEnablerResultProps = {
     /**
      * onScroll callback (should be set to your onScroll).
      */

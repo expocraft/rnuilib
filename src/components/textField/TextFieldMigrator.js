@@ -1,9 +1,9 @@
-import _mapKeys from 'lodash/mapKeys';
-import React, {useEffect, forwardRef} from 'react';
+import _mapKeys from "lodash/mapKeys";
+import React, { useEffect, forwardRef } from 'react';
 import hoistStatics from 'hoist-non-react-statics';
-import OldTextField from './index';
-import NewTextField from '../../incubator/TextField';
-import {LogService} from '../../services';
+import OldTextField from "./index";
+import NewTextField from "../../incubator/TextField";
+import { LogService } from "../../services";
 const propsMigrationMap = {
   /* LABEL */
   helperText: 'hint',
@@ -12,7 +12,8 @@ const propsMigrationMap = {
   titleStyle: 'labelStyle',
   /* CHAR COUNTER */
   showCharacterCounter: 'showCharCounter',
-  transformer: 'formatter'
+  transformer: 'formatter',
+  errorMessage: 'validationMessage'
 };
 const specialMigrationMap = {
   prefix: 'leadingAccessory',
@@ -24,14 +25,12 @@ const specialMigrationMap = {
   useTopErrors: 'validationMessagePosition'
 };
 const customMessageMap = {
-  centered: `Pass textAlign to 'style' prop instead.`,
   error: `Use 'validationMessage' with 'validate' props`,
   expandable: 'This prop will not be supported anymore',
   renderExpandableInput: 'This prop will not be supported anymore',
   renderExpandable: 'This prop will not be supported anymore',
   onToggleExpandableModal: 'This prop will not be supported anymore',
-  topBarProps: 'This prop will not be supported anymore',
-  transformer: 'This prop will not be supported anymore'
+  topBarProps: 'This prop will not be supported anymore'
 };
 function migrateProps(props) {
   const fixedProps = _mapKeys(props, (value, key) => {
@@ -43,9 +42,7 @@ function migrateProps(props) {
       });
       return propsMigrationMap[key];
     } else if (specialMigrationMap[key] && value !== undefined) {
-      LogService.warn(
-        `The new TextField implementation does not support the '${key}' prop. Please use the '${specialMigrationMap[key]}' instead`
-      );
+      LogService.warn(`The new TextField implementation does not support the '${key}' prop. Please use the '${specialMigrationMap[key]}' instead`);
     } else if (customMessageMap[key] && value !== undefined) {
       LogService.warn(`The new TextField implementation does not support the '${key}' prop. ${customMessageMap[key]}`);
     }
@@ -53,13 +50,14 @@ function migrateProps(props) {
   });
   return fixedProps;
 }
-const TextFieldMigrator = forwardRef(({migrate = false, customWarning, ...props}, ref) => {
+const TextFieldMigrator = forwardRef(({
+  migrate = true,
+  customWarning,
+  ...props
+}, ref) => {
   useEffect(() => {
     if (!migrate) {
-      LogService.warn(
-        customWarning ??
-          `RNUILib TextField component will soon be replaced with a new implementation, in order to start the migration - please pass the 'migrate' prop`
-      );
+      LogService.warn(customWarning ?? `RNUILib TextField component will soon be replaced with a new implementation, in order to start the migration - please pass the 'migrate' prop`);
     }
   }, []);
   if (migrate) {

@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { ImageURISource } from 'react-native';
-export declare type StateScreenProps = {
+export type StateScreenProps = {
     /**
      * The image source that's showing at the top. use an image that was required locally
      */

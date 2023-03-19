@@ -10,8 +10,7 @@ import TextFieldMigrator from "../textField/TextFieldMigrator";
 import Icon from "../icon";
 import View from "../view";
 import Text from "../text";
-// @ts-expect-error
-import NativePicker from "./NativePicker";
+// import NativePicker from './NativePicker';
 import PickerItemsList from "./PickerItemsList";
 import PickerItem from "./PickerItem";
 import PickerContext from "./PickerContext";
@@ -19,7 +18,7 @@ import usePickerSelection from "./helpers/usePickerSelection";
 import usePickerLabel from "./helpers/usePickerLabel";
 import usePickerSearch from "./helpers/usePickerSearch";
 import useImperativePickerHandle from "./helpers/useImperativePickerHandle";
-import usePickerMigrationWarnings from "./helpers/usePickerMigrationWarnings";
+// import usePickerMigrationWarnings from './helpers/usePickerMigrationWarnings';
 import { extractPickerItems } from "./PickerPresenter";
 import { PickerProps, PickerItemProps, PickerValue, PickerModes, PickerFieldTypes, PickerSearchStyle, PickerMethods } from "./types";
 const dropdown = require("./assets/dropdown.png");
@@ -38,7 +37,7 @@ const Picker = React.forwardRef((props, ref) => {
     searchStyle,
     searchPlaceholder,
     renderCustomSearch,
-    useNativePicker,
+    // useNativePicker,
     useWheelPicker,
     renderPicker,
     customPickerProps,
@@ -61,8 +60,11 @@ const Picker = React.forwardRef((props, ref) => {
     renderItem,
     children,
     useSafeArea,
-    migrate,
-    migrateTextField,
+    // TODO: Remove migrate props and migrate code
+    migrate = true,
+    migrateTextField = true,
+    accessibilityLabel,
+    accessibilityHint,
     ...others
   } = themeProps;
   const {
@@ -71,10 +73,10 @@ const Picker = React.forwardRef((props, ref) => {
   const [selectedItemPosition, setSelectedItemPosition] = useState(0);
   const [items] = useState(extractPickerItems(themeProps));
   const pickerExpandable = useRef(null);
-  usePickerMigrationWarnings({
-    value,
-    mode
-  });
+
+  // TODO: Remove
+  // usePickerMigrationWarnings({value, mode});
+
   const pickerRef = useImperativePickerHandle(ref, pickerExpandable);
   const {
     filteredChildren,
@@ -109,6 +111,8 @@ const Picker = React.forwardRef((props, ref) => {
     items,
     getItemLabel,
     getLabel,
+    accessibilityLabel,
+    accessibilityHint,
     placeholder: themeProps.placeholder
   });
   const onSelectedItemLayout = useCallback(event => {
@@ -116,6 +120,7 @@ const Picker = React.forwardRef((props, ref) => {
     setSelectedItemPosition(y);
   }, []);
   const contextValue = useMemo(() => {
+    // @ts-expect-error cleanup after removing migrate prop
     const pickerValue = !migrate && typeof value === 'object' && !_isArray(value) ? value?.value : value;
     return {
       migrate,
@@ -196,19 +201,28 @@ const Picker = React.forwardRef((props, ref) => {
         </View>;
     }
   };
-  if (useNativePicker) {
-    return <NativePicker {...themeProps} />;
-  }
+
+  // if (useNativePicker) {
+  //   return <NativePicker {...themeProps}/>;
+  // }
+
   return <PickerContext.Provider value={contextValue}>
       <ExpandableOverlay ref={pickerExpandable} useDialog={useWheelPicker} modalProps={modalProps} dialogProps={DIALOG_PROPS} expandableContent={expandableModalContent} renderCustomOverlay={renderCustomModal ? _renderCustomModal : undefined} onPress={onPress} testID={testID} {...customPickerProps} disabled={themeProps.editable === false}>
         {renderPicker ?
       // @ts-expect-error - hopefully will be solved after the picker migration ends
-      renderPicker(value, label) : <TextFieldMigrator migrate={migrateTextField} customWarning="RNUILib Picker component's internal TextField will soon be replaced with a new implementation, in order to start the migration - please pass to Picker the 'migrateTextField' prop" ref={pickerRef}
+      renderPicker(value, label) : <TextFieldMigrator migrate={migrateTextField}
+      // customWarning="RNUILib Picker component's internal TextField will soon be replaced with a new implementation, in order to start the migration - please pass to Picker the 'migrateTextField' prop"
+      // @ts-expect-error
+      ref={pickerRef}
       // {...textInputProps}
-      {...others} {...propsByFieldType} testID={`${testID}.input`} containerStyle={[containerStyle, propsByFieldType?.containerStyle]} labelStyle={[propsByFieldType?.labelStyle, labelStyle]} {...accessibilityInfo} importantForAccessibility={'no-hide-descendants'} value={label} selection={Constants.isAndroid ? {
+      {...others} {...propsByFieldType} testID={`${testID}.input`}
+      // @ts-expect-error
+      containerStyle={[containerStyle, propsByFieldType?.containerStyle]} labelStyle={[propsByFieldType?.labelStyle, labelStyle]} {...accessibilityInfo} importantForAccessibility={'no-hide-descendants'} value={label} selection={Constants.isAndroid ? {
         start: 0
       } : undefined}
-      /* Note: Disable TextField expandable feature */ topBarProps={undefined}>
+      /* Note: Disable TextField expandable feature */
+      // topBarProps={undefined}
+      >
             {renderPickerInnerInput()}
           </TextFieldMigrator>}
       </ExpandableOverlay>

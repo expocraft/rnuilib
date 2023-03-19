@@ -1,4 +1,4 @@
-export declare type Schemes = {
+export type Schemes = {
     light: {
         [key: string]: string;
     };
@@ -6,8 +6,8 @@ export declare type Schemes = {
         [key: string]: string;
     };
 };
-export declare type SchemeType = 'default' | 'light' | 'dark';
-export declare type SchemeChangeListener = (schemeType?: 'light' | 'dark') => void;
+export type SchemeType = 'default' | 'light' | 'dark';
+export type SchemeChangeListener = (schemeType?: 'light' | 'dark') => void;
 declare class Scheme {
     private currentScheme;
     private schemes;

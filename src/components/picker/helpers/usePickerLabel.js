@@ -15,7 +15,9 @@ const usePickerLabel = props => {
     items,
     getLabel,
     getItemLabel,
-    placeholder
+    placeholder,
+    accessibilityLabel,
+    accessibilityHint
   } = props;
   const getLabelsFromArray = useCallback(value => {
     const itemsByValue = _keyBy(items, 'value');
@@ -28,9 +30,11 @@ const usePickerLabel = props => {
     if (_isArray(value)) {
       return getLabelsFromArray(value);
     }
-    if (typeof value === 'object') {
-      return value?.label;
-    }
+
+    // TODO: Remove
+    // if (typeof value === 'object') {
+    //   return value?.label;
+    // }
 
     // otherwise, extract from picker items
     const selectedItem = _find(items, {
@@ -41,10 +45,10 @@ const usePickerLabel = props => {
   const accessibilityInfo = useMemo(() => {
     const label = _getLabel(value);
     return {
-      accessibilityLabel: label ? `${placeholder}. selected. ${label}` : `Select ${placeholder}`,
-      accessibilityHint: label ? 'Double tap to edit' : `Goes to ${placeholder}. Suggestions will be provided`
+      accessibilityLabel: accessibilityLabel ?? (label ? `${placeholder}. selected. ${label}` : `Select ${placeholder}`),
+      accessibilityHint: accessibilityHint ?? (label ? 'Double tap to edit' : `Goes to ${placeholder}. Suggestions will be provided`)
     };
-  }, [value]);
+  }, [value, accessibilityLabel, accessibilityHint]);
   return {
     getLabelsFromArray,
     getLabel: _getLabel,

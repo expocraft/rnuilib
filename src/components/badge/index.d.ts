@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { ImageSourcePropType, ImageStyle, StyleProp, TextStyle, TouchableOpacityProps, ViewStyle, ViewProps } from 'react-native';
 declare const LABEL_FORMATTER_VALUES: readonly [1, 2, 3, 4];
-declare type LabelFormatterValues = typeof LABEL_FORMATTER_VALUES[number];
-export declare type BadgeProps = ViewProps & TouchableOpacityProps & {
+type LabelFormatterValues = typeof LABEL_FORMATTER_VALUES[number];
+export type BadgeProps = ViewProps & TouchableOpacityProps & {
     /**
      * Text to show inside the badge.
      * Not passing a label (undefined) will present a pimple badge.

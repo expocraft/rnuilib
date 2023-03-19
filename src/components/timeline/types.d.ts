@@ -15,14 +15,14 @@ export declare enum PointTypes {
     CIRCLE = "circle",
     OUTLINE = "outline"
 }
-export declare type LineProps = {
+export type LineProps = {
     state?: StateTypes;
     type?: LineTypes;
     color?: string;
     /** to mark as entry point */
     entry?: boolean;
 };
-export declare type PointProps = {
+export type PointProps = {
     state?: StateTypes;
     type?: PointTypes;
     color?: string;
@@ -31,13 +31,13 @@ export declare type PointProps = {
     /** to align point to this view's center */
     anchorRef?: React.MutableRefObject<undefined>;
 };
-export declare type Layout = {
+export type Layout = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-export declare type TimelineProps = PropsWithChildren<{
+export type TimelineProps = PropsWithChildren<{
     topLine?: LineProps;
     bottomLine?: LineProps;
     point?: PointProps;

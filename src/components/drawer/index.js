@@ -11,14 +11,13 @@ import { extractAccessibilityProps } from "../../commons/modifiers";
 import { Colors } from "../../style";
 import View from "../view";
 import Swipeable from "./Swipeable";
-import { LogService } from "../../services";
 const DEFAULT_BG = Colors.$backgroundPrimaryHeavy;
 const DEFAULT_BOUNCINESS = 0;
 /**
  * @description: Drawer Component
  * @important: If your app works with RNN, your screen must be wrapped
  * with gestureHandlerRootHOC from 'react-native-gesture-handler'. see
- * @importantLink: https://kmagiera.github.io/react-native-gesture-handler/docs/getting-started.html#with-wix-react-native-navigation-https-githubcom-wix-react-native-navigation
+ * @importantLink: https://docs.swmansion.com/react-native-gesture-handler/docs/installation/
  * @gif: https://github.com/wix/react-native-ui-lib/blob/master/demo/showcase/Drawer/Drawer.gif?raw=true
  */
 class Drawer extends PureComponent {
@@ -258,13 +257,8 @@ class Drawer extends PureComponent {
       leftItem,
       rightItems,
       onToggleSwipeLeft,
-      leftToggleHapticTrigger,
       ...others
     } = this.props;
-    leftToggleHapticTrigger && LogService.deprecationWarn({
-      component: 'Drawer',
-      oldProp: 'leftToggleHapticTrigger'
-    });
     return <Swipeable {...others} ref={this._swipeableRow} friction={1} containerStyle={style} animationOptions={this.animationOptions} renderLeftActions={this.leftRender} renderRightActions={this.rightRender} rightActionsContainerStyle={this.getRightActionsContainerStyle(rightItems, leftItem)} leftActionsContainerStyle={this.getLeftActionsContainerStyle(leftItem, rightItems)} onSwipeableWillOpen={this.onSwipeableWillOpen} onSwipeableWillClose={this.onSwipeableWillClose} onToggleSwipeLeft={onToggleSwipeLeft && this.onToggleSwipeLeft}>
         <View accessible accessibilityActions={this.getAccessibilityActions()} onAccessibilityAction={this.onAccessibilityAction} {...extractAccessibilityProps(this.props)}>
           {children}

@@ -2,21 +2,10 @@ import _cloneDeep from "lodash/cloneDeep";
 import _isFunction from "lodash/isFunction";
 import _get from "lodash/get";
 import _set from "lodash/set";
-import Colors from "./colors";
 export class ThemeManager {
   theme = {
-    primaryColor: Colors.$backgroundPrimaryHeavy,
-    CTA: {
-      textColor: Colors.white,
-      disabledColor: Colors.grey60,
-      backgroundColor: Colors.$backgroundPrimaryHeavy
-    },
-    titleColor: Colors.grey10,
-    subtitleColor: Colors.grey40,
-    dividerColor: Colors.grey70,
-    components: {} // leave this key and delete the rest on V6
+    components: {}
   };
-
   forcedTheme = {
     components: {}
   };
@@ -25,9 +14,6 @@ export class ThemeManager {
   }
   getThemeContext() {
     return this.themeContext;
-  }
-  getTheme() {
-    return this.theme;
   }
   setItem(key, value) {
     if (key === 'components') {
@@ -59,29 +45,6 @@ export class ThemeManager {
   }
   get forcedThemeComponents() {
     return this.forcedTheme.components;
-  }
-
-  // TODO: remove getters below
-  get primaryColor() {
-    return this.theme.primaryColor;
-  }
-  get CTATextColor() {
-    return this.theme.CTA.textColor;
-  }
-  get CTADisabledColor() {
-    return this.theme.CTA.disabledColor;
-  }
-  get CTABackgroundColor() {
-    return this.theme.CTA.backgroundColor;
-  }
-  get titleColor() {
-    return this.theme.titleColor;
-  }
-  get subtitleColor() {
-    return this.theme.subtitleColor;
-  }
-  get dividerColor() {
-    return this.theme.dividerColor;
   }
 }
 export default new ThemeManager();

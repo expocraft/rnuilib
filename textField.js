@@ -1,1 +1,1 @@
-module.exports = require('./src/components/textField').default;
+module.exports = require('./src/components/textField/TextFieldMigrator').default;

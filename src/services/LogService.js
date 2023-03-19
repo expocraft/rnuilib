@@ -1,12 +1,60 @@
-function warn(message) {
-  if (__DEV__) {
-    console.warn(message);
-  }
-}
-function error(message) {
-  if (__DEV__) {
-    console.error(message);
-  }
+class LogService {
+  injectBILogger = biLogger => {
+    this.biLogger = biLogger;
+  };
+  logBI = event => {
+    this.biLogger?.log(event);
+  };
+  warn = message => {
+    if (__DEV__) {
+      console.warn(message);
+    }
+  };
+  error = message => {
+    if (__DEV__) {
+      console.error(message);
+    }
+  };
+  deprecationWarn = ({
+    component,
+    oldProp,
+    newProp
+  }) => {
+    this.warn(getDeprecationMessage({
+      component,
+      oldProp,
+      newProp
+    }));
+  };
+  componentDeprecationWarn = ({
+    oldComponent,
+    newComponent
+  }) => {
+    this.warn(getComponentDeprecationMessage({
+      oldComponent,
+      newComponent
+    }));
+  };
+  deprecationError = ({
+    component,
+    oldProp,
+    newProp
+  }) => {
+    this.error(getDeprecationMessage({
+      component,
+      oldProp,
+      newProp
+    }));
+  };
+  componentDeprecationError = ({
+    oldComponent,
+    newComponent
+  }) => {
+    this.error(getComponentDeprecationMessage({
+      oldComponent,
+      newComponent
+    }));
+  };
 }
 function getDeprecationMessage({
   component,
@@ -23,51 +71,4 @@ function getComponentDeprecationMessage({
   const message = `RNUILib's ${oldComponent} component will be deprecated soon, please use the "${newComponent}" component instead`;
   return message;
 }
-function deprecationWarn({
-  component,
-  oldProp,
-  newProp
-}) {
-  warn(getDeprecationMessage({
-    component,
-    oldProp,
-    newProp
-  }));
-}
-function componentDeprecationWarn({
-  oldComponent,
-  newComponent
-}) {
-  warn(getComponentDeprecationMessage({
-    oldComponent,
-    newComponent
-  }));
-}
-function deprecationError({
-  component,
-  oldProp,
-  newProp
-}) {
-  error(getDeprecationMessage({
-    component,
-    oldProp,
-    newProp
-  }));
-}
-function componentDeprecationError({
-  oldComponent,
-  newComponent
-}) {
-  error(getComponentDeprecationMessage({
-    oldComponent,
-    newComponent
-  }));
-}
-export default {
-  warn,
-  error,
-  deprecationWarn,
-  componentDeprecationWarn,
-  deprecationError,
-  componentDeprecationError
-};
+export default new LogService();

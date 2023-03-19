@@ -36,13 +36,6 @@ class RadioButton extends PureComponent {
       this.animate();
     }
   }
-  get isContentOnLeft() {
-    const {
-      contentOnLeft,
-      contentOnRight
-    } = this.props;
-    return contentOnLeft || contentOnRight;
-  }
   animate() {
     const {
       selected
@@ -155,9 +148,10 @@ class RadioButton extends PureComponent {
     const {
       label,
       labelStyle,
+      contentOnLeft,
       testID
     } = this.props;
-    return label && <Text marginL-10={!this.isContentOnLeft} marginR-10={this.isContentOnLeft} $textDefault style={labelStyle} testID={`${testID}.label`}>
+    return label && <Text flexS marginL-10={!contentOnLeft} marginR-10={contentOnLeft} $textDefault style={labelStyle} testID={`${testID}.label`}>
           {label}
         </Text>;
   }
@@ -190,16 +184,17 @@ class RadioButton extends PureComponent {
       onPress,
       onValueChange,
       containerStyle,
+      contentOnLeft,
       ...others
     } = this.props;
     const Container = onPress || onValueChange ? TouchableOpacity : View;
     return (
       // @ts-ignore
       <Container row centerV activeOpacity={1} {...others} style={containerStyle} onPress={this.onPress} {...this.getAccessibilityProps()}>
-        {!this.isContentOnLeft && this.renderButton()}
+        {!contentOnLeft && this.renderButton()}
         {this.props.iconOnRight ? this.renderLabel() : this.renderIcon()}
         {this.props.iconOnRight ? this.renderIcon() : this.renderLabel()}
-        {this.isContentOnLeft && this.renderButton()}
+        {contentOnLeft && this.renderButton()}
       </Container>
     );
   }

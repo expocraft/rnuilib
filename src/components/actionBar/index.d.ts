@@ -1,7 +1,7 @@
 import React from 'react';
 import { ViewStyle } from 'react-native';
 import { ButtonProps } from '../button';
-export declare type ActionBarProps = {
+export type ActionBarProps = {
     /**
      * action bar height
      */

@@ -2,23 +2,23 @@ import React, { Component, ElementRef } from 'react';
 import { Animated, StyleProp, TextStyle, TouchableWithoutFeedbackProps, LayoutChangeEvent } from 'react-native';
 import { ButtonProps } from '../button';
 import { PageControlProps } from '../pageControl';
-export declare type HighlightFrame = {
+export type HighlightFrame = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-declare type RectSize = {
+type RectSize = {
     width: number;
     height: number;
 };
-declare type Position = {
+type Position = {
     left: number;
     top: number;
     width: number;
     height: number;
 };
-export declare type FeatureHighlightProps = {
+export type FeatureHighlightProps = {
     /**
      * Boolean to determine if to present the feature highlight component
      */

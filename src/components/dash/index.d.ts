@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { StyleProp, ViewProps, ViewStyle } from 'react-native';
-export declare type Layout = {
+export type Layout = {
     x: number;
     y: number;
     width: number;

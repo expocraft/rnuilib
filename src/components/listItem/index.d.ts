@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ListItemPart from './ListItemPart';
 import { ListItemProps } from './types';
-declare type ListItemState = {
+type ListItemState = {
     pressed: boolean;
 };
 /**

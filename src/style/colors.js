@@ -12,7 +12,7 @@ import _forEach from "lodash/forEach";
 //@ts-ignore
 import Color from 'color';
 import tinycolor from 'tinycolor2';
-import { colorsPalette, themeColors } from "./colorsPalette";
+import { colorsPalette } from "./colorsPalette";
 import DesignTokens from "./designTokens";
 import DesignTokensDM from "./designTokensDM";
 //@ts-ignore
@@ -21,7 +21,7 @@ import Scheme from "./scheme";
 export class Colors {
   shouldSupportDarkMode = false;
   constructor() {
-    const colors = Object.assign(colorsPalette, themeColors);
+    const colors = Object.assign(colorsPalette);
     Object.assign(this, colors);
     this.loadSchemes({
       light: DesignTokens,
@@ -173,7 +173,8 @@ export class Colors {
       const shouldReverseOnDark = !options?.avoidReverseOnDark && this.shouldSupportDarkMode && Scheme.getSchemeType() === 'dark';
       const key = shouldReverseOnDark ? colorKeys[colorKeys.length - 1 - keyIndex] : tintKey;
       const requiredColorKey = `${colorKey.slice(0, -2)}${key}`;
-      const requiredColor = this[requiredColorKey];
+      const requiredColorKey1 = `${colorKey.slice(0, -1)}${key}`;
+      const requiredColor = this[requiredColorKey] || this[requiredColorKey1];
       if (_isUndefined(requiredColor)) {
         return this.getTintedColorForDynamicHex(color, tintKey);
       }
@@ -246,10 +247,10 @@ export class Colors {
     const hue = hsl.color[0];
     return _inRange(hue, 51, 184);
   }
-  isDark(colorValue) {
+  isDark(colorValue, darkThreshold = 0.55) {
     const color = colorValue === null ? undefined : colorStringValue(colorValue);
     const lum = tinycolor(color).getLuminance();
-    return lum < 0.55;
+    return lum < darkThreshold;
   }
   isValidHex(string) {
     return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(string);

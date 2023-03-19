@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { ViewStyle } from 'react-native';
-export declare type SafeAreaSpacerViewProps = {
+export type SafeAreaSpacerViewProps = {
     style?: ViewStyle;
 };
 declare const SafeAreaSpacerView: {

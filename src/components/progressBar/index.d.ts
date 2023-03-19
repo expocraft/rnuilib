@@ -27,7 +27,7 @@ interface Props {
     customElement?: JSX.Element;
     testID?: string;
 }
-export declare type ProgressBarProps = Props;
+export type ProgressBarProps = Props;
 interface State {
     containerWidth?: number;
 }

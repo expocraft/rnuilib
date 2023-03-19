@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { ViewProps } from '../view';
 import { ButtonProps } from '../button';
-export declare type StackAggregatorProps = ViewProps & {
+export type StackAggregatorProps = ViewProps & {
     /**
       * The initial state of the stack
       */

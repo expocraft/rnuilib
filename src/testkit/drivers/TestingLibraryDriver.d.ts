@@ -13,7 +13,7 @@ export declare class TestingLibraryDriver implements UniDriver {
     at: (index: number) => Promise<UniDriver>;
     instance: () => Promise<any>;
     getInstanceProps: () => Promise<any>;
-    press: () => Promise<void>;
+    press: () => void;
     typeText: (text: string) => Promise<void>;
     scrollX: (deltaX: number) => Promise<void>;
     scrollY: (deltaY: number) => Promise<void>;

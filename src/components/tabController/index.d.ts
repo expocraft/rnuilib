@@ -21,10 +21,6 @@ export interface TabControllerProps extends ThemeComponent {
      */
     initialIndex?: number;
     /**
-     * DEPRECATED: use initialIndex instead
-     */
-    selectedIndex?: number;
-    /**
      * callback for when index has change (will not be called on ignored items)
      */
     onChangeIndex?: (index: number, prevIndex: number | null) => void;

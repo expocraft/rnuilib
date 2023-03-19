@@ -46,11 +46,11 @@ interface Props {
     style?: StyleProp<ViewStyle>;
     testID?: string;
     /**
-     * Give the ColorPalette a background color
+     * The ColorPalette's background color
      */
     backgroundColor?: string;
 }
-export declare type ColorPaletteProps = Props;
+export type ColorPaletteProps = Props;
 interface State {
     currentPage: number;
     scrollable: boolean;

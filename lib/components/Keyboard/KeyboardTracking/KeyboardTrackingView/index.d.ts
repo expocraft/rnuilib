@@ -5,7 +5,7 @@ declare const SCROLL_BEHAVIORS: {
     SCROLL_TO_BOTTOM_INVERTED_ONLY: any;
     FIXED_OFFSET: any;
 };
-export declare type KeyboardTrackingViewProps = ViewProps & {
+export type KeyboardTrackingViewProps = ViewProps & {
     /**
      * Enables tracking of the keyboard when it's dismissed interactively (false by default).
      * Why? When using an external keyboard (BT),

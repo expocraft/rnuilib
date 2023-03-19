@@ -1,5 +1,5 @@
 import { PickerProps, PickerValue } from '../types';
-interface UsePickerLabelProps extends Pick<PickerProps, 'value' | 'getLabel' | 'getItemLabel' | 'placeholder'> {
+interface UsePickerLabelProps extends Pick<PickerProps, 'value' | 'getLabel' | 'getItemLabel' | 'placeholder' | 'accessibilityLabel' | 'accessibilityHint'> {
     items: {
         value: string | number;
         label: string;

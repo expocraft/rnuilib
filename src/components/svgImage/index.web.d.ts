@@ -5,6 +5,7 @@ export interface SvgImageProps {
      */
     tintColor?: string | null;
     data: any;
+    style?: object[];
 }
 declare function SvgImage(props: SvgImageProps): JSX.Element | null;
 declare namespace SvgImage {

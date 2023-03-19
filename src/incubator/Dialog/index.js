@@ -4,6 +4,7 @@ import hoistStatics from 'hoist-non-react-statics';
 import { Extrapolation, interpolate, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { Spacings, Colors, BorderRadiuses } from "../../style";
+import { useDidUpdate } from "../../hooks";
 import { asBaseComponent } from "../../commons/new";
 import View from "../../components/view";
 import Modal from "../../components/modal";
@@ -86,7 +87,7 @@ const Dialog = (props, ref) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, wasMeasured]);
-  useEffect(() => {
+  useDidUpdate(() => {
     if (wasMeasured) {
       if (modalVisibility) {
         open();
@@ -177,6 +178,9 @@ const Dialog = (props, ref) => {
     };
   }, [overlayBackgroundColor]);
   const renderOverlayView = () => <View testID={`${testID}.overlayFadingBackground`} absF reanimated style={overlayStyle} pointerEvents="none" />;
+  if (!modalVisibility) {
+    return null;
+  }
   return <Modal transparent animationType={'none'} {...otherModalProps} testID={`${testID}.modal`} useGestureHandlerRootView visible={modalVisibility} onBackgroundPress={ignoreBackgroundPress ? undefined : close} onRequestClose={ignoreBackgroundPress ? undefined : close} onDismiss={undefined}>
       {renderOverlayView()}
       <View useSafeArea={useSafeArea} pointerEvents={'box-none'} style={alignmentStyle}>

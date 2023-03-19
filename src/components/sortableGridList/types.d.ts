@@ -1,12 +1,12 @@
 import { FlatListProps, ScrollViewProps, StyleProp, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { GridListBaseProps } from '../gridList';
-export declare type ItemLayout = {
+export type ItemLayout = {
     width: number;
     height: number;
 } | undefined;
-export declare type ItemsOrder = string[];
-export declare type ItemProps<T> = T & {
+export type ItemsOrder = string[];
+export type ItemProps<T> = T & {
     id: string;
 };
 export interface SortableGridListProps<T = any> extends GridListBaseProps, ScrollViewProps {

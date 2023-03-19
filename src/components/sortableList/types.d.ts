@@ -4,7 +4,7 @@ export interface SortableListItemProps {
     id: string;
     locked?: boolean;
 }
-export declare type Data<ItemT extends SortableListItemProps> = FlatListProps<ItemT>['data'];
+export type Data<ItemT extends SortableListItemProps> = FlatListProps<ItemT>['data'];
 export interface SortableListProps<ItemT extends SortableListItemProps> extends Omit<FlatListProps<ItemT>, 'extraData' | 'data'>, Pick<SortableListContextType<ItemT>, 'scale'> {
     /**
      * The data of the list, do not update the data.

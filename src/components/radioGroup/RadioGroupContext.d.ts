@@ -9,6 +9,6 @@ export interface RadioGroupContextProps {
      */
     onValueChange?: (value: string | number | boolean) => void;
 }
-export declare type RadioGroupContextPropTypes = RadioGroupContextProps;
+export type RadioGroupContextPropTypes = RadioGroupContextProps;
 declare const _default: React.Context<RadioGroupContextProps>;
 export default _default;

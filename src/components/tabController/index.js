@@ -1,12 +1,9 @@
-import _isUndefined from "lodash/isUndefined";
 import _filter from "lodash/filter";
 import _noop from "lodash/noop";
-// TODO: support commented props
 import React, { useMemo, useEffect, useState, useCallback } from 'react';
 import { useAnimatedReaction, useSharedValue, withTiming, runOnJS } from 'react-native-reanimated';
 import { useOrientation, useThemeProps } from "../../hooks";
 import { Constants } from "../../commons/new";
-import { LogService } from "../../services";
 import TabBarContext from "./TabBarContext";
 import TabBar from "./TabBar";
 import TabBarItem, { TabControllerItemProps } from "./TabBarItem";
@@ -14,9 +11,6 @@ import TabPage from "./TabPage";
 import PageCarousel from "./PageCarousel";
 import useImperativeTabControllerHandle, { TabControllerImperativeMethods } from "./useImperativeTabControllerHandle";
 export { TabControllerItemProps, TabControllerImperativeMethods };
-
-// TODO: should migrate selectedIndex to initialIndex (and make this prop uncontrolled)
-
 const getScreenWidth = useSafeArea => {
   const {
     left,
@@ -36,7 +30,6 @@ const TabController = React.forwardRef((props, ref) => {
   const themeProps = useThemeProps(props, 'TabController');
   const {
     initialIndex = 0,
-    selectedIndex,
     asCarousel = false,
     items,
     onChangeIndex = _noop,
@@ -60,32 +53,18 @@ const TabController = React.forwardRef((props, ref) => {
     return _filter(items, item => item.ignore);
   }, [items]);
 
-  /* backwards compatibility for `selectedIndex` prop. this line eventually should be removed */
-  const _initialIndex = selectedIndex || initialIndex;
-
   /* currentPage - static page index */
-  const currentPage = useSharedValue(_initialIndex);
+  const currentPage = useSharedValue(initialIndex);
   /* targetPage - transitioned page index (can be a fraction when transitioning between pages) */
-  const targetPage = useSharedValue(_initialIndex);
-  // const carouselOffset = useSharedValue(initialIndex * Math.round(pageWidth));
-
+  const targetPage = useSharedValue(initialIndex);
   const setCurrentIndex = useCallback(index => {
     'worklet';
 
     currentPage.value = index;
   }, []);
   useEffect(() => {
-    if (!_isUndefined(selectedIndex)) {
-      LogService.deprecationWarn({
-        component: 'TabController',
-        oldProp: 'selectedIndex',
-        newProp: 'initialIndex'
-      });
-    }
-  }, [selectedIndex]);
-  useEffect(() => {
-    setCurrentIndex(_initialIndex);
-  }, [_initialIndex]);
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
   useAnimatedReaction(() => {
     return currentPage.value;
   }, (value, prevValue) => {
@@ -98,7 +77,7 @@ const TabController = React.forwardRef((props, ref) => {
   const context = useMemo(() => {
     return {
       /* Pass Props */
-      initialIndex: _initialIndex,
+      initialIndex,
       asCarousel,
       pageWidth,
       /* Items */
@@ -108,13 +87,12 @@ const TabController = React.forwardRef((props, ref) => {
       /* Animated Values */
       targetPage,
       currentPage,
-      // carouselOffset,
       containerWidth: screenWidth,
       /* Callbacks */
       onChangeIndex,
       setCurrentIndex
     };
-  }, [_initialIndex, asCarousel, items, onChangeIndex, screenWidth]);
+  }, [initialIndex, asCarousel, items, onChangeIndex, screenWidth]);
   return <TabBarContext.Provider value={context}>{children}</TabBarContext.Provider>;
 });
 

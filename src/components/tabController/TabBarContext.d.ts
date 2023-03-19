@@ -2,7 +2,6 @@ import React from 'react';
 import Reanimated from 'react-native-reanimated';
 interface TabControllerContext {
     initialIndex?: number;
-    selectedIndex?: number;
     items?: any[];
     itemsCount: number;
     asCarousel?: boolean;

@@ -44,8 +44,8 @@ export interface ScrollBarProps extends FlatListProps<any> {
      */
     focusIndex?: number;
 }
-declare type Props = ScrollBarProps & ForwardRefInjectedProps;
-declare type State = {
+type Props = ScrollBarProps & ForwardRefInjectedProps;
+type State = {
     gradientOpacity: Animated.Value;
     gradientOpacityLeft: Animated.Value;
 };

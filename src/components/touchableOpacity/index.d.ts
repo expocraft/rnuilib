@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacityProps as RNTouchableOpacityProps } from 'react-native';
+import { GestureResponderEvent, TouchableOpacityProps as RNTouchableOpacityProps } from 'react-native';
 import { ContainerModifiers } from '../../commons/new';
 import { ViewProps } from '../view';
 export interface TouchableOpacityProps extends Omit<RNTouchableOpacityProps, 'style' | 'onPress' | 'onPressIn' | 'onPressOut' | 'onLongPress'>, ContainerModifiers {
@@ -35,10 +35,14 @@ export interface TouchableOpacityProps extends Omit<RNTouchableOpacityProps, 'st
      */
     customValue?: any;
     style?: ViewProps['style'];
-    onPress?: (props?: TouchableOpacityProps | any) => void;
-    onPressIn?: (props?: TouchableOpacityProps) => void | RNTouchableOpacityProps['onPressIn'];
-    onPressOut?: (props?: TouchableOpacityProps) => void | RNTouchableOpacityProps['onPressOut'];
-    onLongPress?: (props?: TouchableOpacityProps) => void | RNTouchableOpacityProps['onLongPress'];
+    onPress?: (props?: (TouchableOpacityProps & {
+        event: GestureResponderEvent;
+    }) | any) => void;
+    onPressIn?: (props?: TouchableOpacityProps | GestureResponderEvent | any) => void | RNTouchableOpacityProps['onPressIn'];
+    onPressOut?: (props?: TouchableOpacityProps | GestureResponderEvent | any) => void | RNTouchableOpacityProps['onPressOut'];
+    onLongPress?: (props?: (TouchableOpacityProps & {
+        event: GestureResponderEvent;
+    }) | any) => void | RNTouchableOpacityProps['onLongPress'];
 }
 declare const _default: React.ComponentClass<TouchableOpacityProps & ThemeComponent, any>;
 export default _default;

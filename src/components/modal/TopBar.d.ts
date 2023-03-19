@@ -64,7 +64,7 @@ export interface ModalTopBarProps {
      */
     useSafeArea?: boolean;
 }
-declare type topBarButtonProp = {
+type topBarButtonProp = {
     onPress?: (props: any) => void;
     label?: string;
     icon?: ImageSourcePropType;

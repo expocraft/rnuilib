@@ -15,6 +15,10 @@ interface Props {
      */
     selected?: boolean;
     /**
+     * Is the initial state is unavailable
+     */
+    unavailable?: boolean;
+    /**
      * Is first render should be animated
      */
     animated?: boolean;
@@ -25,8 +29,12 @@ interface Props {
     index?: number;
     style?: StyleProp<ViewStyle>;
     testID?: string;
+    /**
+     * Color swatch size
+     */
+    size?: number;
 }
-export declare type ColorSwatchProps = Props;
+export type ColorSwatchProps = Props;
 export declare const SWATCH_MARGIN = 12;
 export declare const SWATCH_SIZE: number;
 /**
@@ -44,12 +52,9 @@ declare class ColorSwatch extends PureComponent<Props> {
     styles: {
         container: {
             backgroundColor: string;
-            width: number;
-            height: number;
-            borderRadius: number;
-            margin: number;
             borderWidth: number | undefined;
             borderColor: string;
+            margin: number;
         };
         transparentImage: {
             width: number;
@@ -62,6 +67,14 @@ declare class ColorSwatch extends PureComponent<Props> {
             right: 0;
             top: 0;
             bottom: 0;
+        };
+        unavailable: {
+            height: string;
+            width: number;
+            transform: {
+                rotate: string;
+            }[];
+            opacity: number;
         };
     };
     layout: {

@@ -1,4 +1,4 @@
-export declare type NumberInputData = {
+export type NumberInputData = {
     type: 'valid';
     userInput: string;
     number: number;

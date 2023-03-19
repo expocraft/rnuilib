@@ -41,6 +41,6 @@ interface Props {
      */
     useCustomTheme?: boolean;
 }
-export declare type StepperProps = Props;
+export type StepperProps = Props;
 declare const _default: React.ComponentClass<Props & ThemeComponent, any>;
 export default _default;

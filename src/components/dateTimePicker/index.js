@@ -1,7 +1,6 @@
-import moment from 'moment';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { DateTimePickerPackage as RNDateTimePicker } from "../../optionalDependencies";
+import { DateTimePickerPackage as RNDateTimePicker, MomentPackage as moment } from "../../optionalDependencies";
 import { useDidUpdate } from "../../hooks";
 import { Colors } from "../../style";
 import Assets from "../../assets";
@@ -47,7 +46,7 @@ function DateTimePicker(props) {
     // @ts-expect-error
     useCustomTheme,
     testID,
-    migrateTextField,
+    migrateTextField = true,
     ...others
   } = props;
   const [value, setValue] = useState(propsValue);
@@ -58,6 +57,11 @@ function DateTimePicker(props) {
       console.error(`RNUILib DateTimePicker component requires installing "@react-native-community/datetimepicker" dependency`);
     }
   }, []);
+  useEffect(() => {
+    if (!moment && (dateFormat || timeFormat)) {
+      console.error(`RNUILib DateTimePicker component with date/time format requires installing "moment" dependency`);
+    }
+  }, [dateFormat, timeFormat]);
   useDidUpdate(() => {
     setValue(propsValue);
   }, [propsValue]);
@@ -77,9 +81,9 @@ function DateTimePicker(props) {
     if (value) {
       switch (mode) {
         case MODES.DATE:
-          return dateFormatter ? dateFormatter(value) : dateFormat ? moment(value).format(dateFormat) : value.toLocaleDateString();
+          return dateFormatter ? dateFormatter(value) : dateFormat && moment ? moment(value).format(dateFormat) : value.toLocaleDateString();
         case MODES.TIME:
-          return timeFormatter ? timeFormatter(value) : timeFormat ? moment(value).format(timeFormat) : value.toLocaleTimeString();
+          return timeFormatter ? timeFormatter(value) : timeFormat && moment ? moment(value).format(timeFormat) : value.toLocaleTimeString();
       }
     }
   };

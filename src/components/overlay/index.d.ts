@@ -11,8 +11,8 @@ export declare enum OverlayIntensityType {
     MEDIUM = "medium",
     HIGH = "high"
 }
-export declare type OverlayTypeType = typeof OVERLY_TYPES[keyof typeof OVERLY_TYPES];
-export declare type OverlayTypes = {
+export type OverlayTypeType = typeof OVERLY_TYPES[keyof typeof OVERLY_TYPES];
+export type OverlayTypes = {
     /**
      * The type of overlay to set on top of the image
      */
@@ -64,7 +64,7 @@ declare class Overlay extends PureComponent<OverlayTypes> {
     } | undefined;
     renderCustomContent: () => JSX.Element;
     renderImage: (style: any, source: ImageSourcePropType) => JSX.Element;
-    getImageSource: (type?: string | undefined, intensity?: OverlayIntensityType | undefined) => any;
+    getImageSource: (type?: OverlayTypeType, intensity?: OverlayIntensityType) => any;
     render(): JSX.Element;
 }
 export default Overlay;

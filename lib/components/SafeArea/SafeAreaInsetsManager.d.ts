@@ -1,4 +1,4 @@
-declare type SafeAreaInsetsType = {
+type SafeAreaInsetsType = {
     top: number;
     left: number;
     bottom: number;

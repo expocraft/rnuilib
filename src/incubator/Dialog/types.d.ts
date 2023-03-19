@@ -5,7 +5,7 @@ import { ModalProps } from '../../components/modal';
 import { ViewProps } from '../../components/view';
 import { TextProps } from '../../components/text';
 import { PanningDirections, PanningDirectionsEnum } from '../panView';
-declare type DialogDirections = PanningDirections;
+type DialogDirections = PanningDirections;
 declare const DialogDirectionsEnum: typeof PanningDirectionsEnum;
 export { DialogDirections, DialogDirectionsEnum };
 export interface DialogHeaderProps extends ViewProps {
@@ -113,4 +113,4 @@ export interface _DialogProps extends AlignmentModifiers, Pick<ViewProps, 'useSa
      */
     testID?: string;
 }
-export declare type DialogProps = PropsWithChildren<_DialogProps>;
+export type DialogProps = PropsWithChildren<_DialogProps>;

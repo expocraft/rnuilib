@@ -1,5 +1,5 @@
 import { TextStyle } from 'react-native';
-declare type MeasureTextTypography = TextStyle & {
+type MeasureTextTypography = TextStyle & {
     allowFontScaling?: boolean;
 };
 export declare class Typography {
@@ -16,7 +16,7 @@ export declare class Typography {
     measureWidth(text: string, typography?: TextStyle | undefined, containerWidth?: number): Promise<any>;
     measureTextSize(text: string, typography?: MeasureTextTypography, containerWidth?: number): Promise<any>;
 }
-declare type CustomTypographyPresets = {
+type CustomTypographyPresets = {
     [custom: string]: TextStyle;
 };
 declare const typography: Typography & Partial<{

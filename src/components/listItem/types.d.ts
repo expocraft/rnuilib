@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { TouchableOpacityProps } from '../touchableOpacity';
-export declare type ListItemProps = TouchableOpacityProps & PropsWithChildren<{
+export type ListItemProps = TouchableOpacityProps & PropsWithChildren<{
     /**
      * the list item height
      */
@@ -32,7 +32,7 @@ export declare type ListItemProps = TouchableOpacityProps & PropsWithChildren<{
     underlayColor?: string;
     testID?: string;
 }>;
-export declare type ListItemPartProps = PropsWithChildren<{
+export type ListItemPartProps = PropsWithChildren<{
     /**
      * this part content will be aligned to left
      */

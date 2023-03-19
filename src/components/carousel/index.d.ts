@@ -2,7 +2,7 @@ import React, { Component, RefObject, ReactNode, Key } from 'react';
 import { ScrollView, LayoutChangeEvent, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import { CarouselProps, CarouselState, PageControlPosition } from './types';
 export { CarouselProps, PageControlPosition };
-declare type DefaultProps = Partial<CarouselProps>;
+type DefaultProps = Partial<CarouselProps>;
 /**
  * @description: Carousel for scrolling pages horizontally
  * @gif: https://user-images.githubusercontent.com/1780255/107120258-40b5bc80-6895-11eb-9596-8065d3a940ff.gif, https://user-images.githubusercontent.com/1780255/107120257-3eebf900-6895-11eb-9800-402e9e0dc692.gif
@@ -49,7 +49,7 @@ declare class Carousel extends Component<CarouselProps, CarouselState> {
     goToNextPage(): void;
     getCalcIndex(index: number): number;
     getSnapToOffsets: () => number[] | undefined;
-    getInitialContentOffset: (snapToOffsets: number[] | undefined) => any;
+    getInitialContentOffset: (snapToOffsets: number[] | undefined) => PointPropType;
     shouldUsePageWidth(): number | false | undefined;
     shouldEnablePagination(): boolean | undefined;
     shouldAllowAccessibilityLayout(): boolean | undefined;

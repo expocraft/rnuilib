@@ -5,8 +5,8 @@ export declare enum PanningDirectionsEnum {
     LEFT = "left",
     RIGHT = "right"
 }
-export declare type PanningDirectionsUnion = 'up' | 'down' | 'left' | 'right';
-export declare type PanningDirections = PanningDirectionsEnum | PanningDirectionsUnion;
+export type PanningDirectionsUnion = 'up' | 'down' | 'left' | 'right';
+export type PanningDirections = PanningDirectionsEnum | PanningDirectionsUnion;
 export interface PanningDismissThreshold {
     /**
      * The (positive) velocity of a drag\swipe past it the view will be dismissed.

@@ -1,8 +1,8 @@
 import React, { PureComponent, GetDerivedStateFromProps } from 'react';
 import { StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { GradientSliderTypes } from './GradientSlider';
-declare type SliderOnValueChange = (value: string) => void;
-export declare type ColorSliderGroupProps = {
+type SliderOnValueChange = (value: string) => void;
+export type ColorSliderGroupProps = {
     /**
      * The gradient color
      */

@@ -36,7 +36,7 @@ export default function useFieldState({
   useEffect(() => {
     if (props.value !== value) {
       setValue(props.value);
-      if (validateOnChange) {
+      if (validateOnChange && (_isUndefined(props.defaultValue) || value !== props.defaultValue)) {
         validateField(props.value);
       }
     }

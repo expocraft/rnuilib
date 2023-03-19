@@ -3,10 +3,10 @@ import { ViewStyle, ImageStyle, ImageSourcePropType, StyleProp } from 'react-nat
 import { ViewProps } from '../view';
 import { TextProps } from '../text';
 import { ImageProps } from '../image';
-declare type ContentType = TextProps & {
+type ContentType = TextProps & {
     text?: string;
 };
-export declare type CardSectionProps = ViewProps & {
+export type CardSectionProps = ViewProps & {
     /**
      * Text content for the CardSection.
      * Example: content={[{text: 'You’re Invited!', text70: true, grey10: true}]}

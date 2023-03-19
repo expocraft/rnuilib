@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextStyle } from 'react-native';
-import { WheelPickerProps } from '../../incubator';
-export declare type SectionsWheelPickerProps = {
+import { WheelPickerProps } from '../WheelPicker';
+export type SectionsWheelPickerProps = {
     /**
      * Array of sections.
      */

@@ -6,7 +6,7 @@ export declare enum OffsetType {
     LEFT = "LEFT",
     RIGHT = "RIGHT"
 }
-export declare type ScrollToItemProps<T extends ScrollToSupportedViews> = Pick<ScrollToProps<T>, 'scrollViewRef'> & {
+export type ScrollToItemProps<T extends ScrollToSupportedViews> = Pick<ScrollToProps<T>, 'scrollViewRef'> & {
     /**
      * The number of items
      */
@@ -34,7 +34,7 @@ export declare type ScrollToItemProps<T extends ScrollToSupportedViews> = Pick<S
      */
     innerSpacing?: number;
 };
-export declare type ScrollToItemResultProps<T extends ScrollToSupportedViews> = Pick<ScrollToResultProps<T>, 'scrollViewRef'> & {
+export type ScrollToItemResultProps<T extends ScrollToSupportedViews> = Pick<ScrollToResultProps<T>, 'scrollViewRef'> & {
     /**
      * This should be called by each ot the items' onLayout
      */

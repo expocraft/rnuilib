@@ -6,9 +6,7 @@ import Image from "../image";
 import { Colors } from "../../style";
 export let FaderPosition;
 (function (FaderPosition) {
-  FaderPosition["LEFT"] = "LEFT";
   FaderPosition["START"] = "START";
-  FaderPosition["RIGHT"] = "RIGHT";
   FaderPosition["END"] = "END";
   FaderPosition["TOP"] = "TOP";
   FaderPosition["BOTTOM"] = "BOTTOM";
@@ -30,7 +28,6 @@ function Fader(props) {
   const styles = useMemo(() => {
     let containerStyle, imageStyle, imageSource;
     switch (position) {
-      case FaderPosition.LEFT:
       case FaderPosition.START:
         containerStyle = {
           ...staticStyles.containerLeft,
@@ -42,7 +39,6 @@ function Fader(props) {
         };
         imageSource = require("./gradientLeft.png");
         break;
-      case FaderPosition.RIGHT:
       case FaderPosition.END:
         containerStyle = {
           ...staticStyles.containerRight,

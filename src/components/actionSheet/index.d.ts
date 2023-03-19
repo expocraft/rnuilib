@@ -3,8 +3,8 @@ import { StyleProp, ViewStyle } from 'react-native';
 import { DialogProps } from '../dialog';
 import { ButtonProps } from '../button';
 import { DialogProps as IncubatorDialogProps } from '../../incubator';
-declare type ActionSheetOnOptionPress = (index: number) => void;
-declare type ActionSheetProps = {
+type ActionSheetOnOptionPress = (index: number) => void;
+type ActionSheetProps = {
     /**
      * Migrate to the Incubator.Dialog component
      */

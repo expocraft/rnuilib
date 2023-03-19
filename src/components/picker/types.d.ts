@@ -2,7 +2,6 @@ import React, { PropsWithChildren, ReactNode } from 'react';
 import { FlatListProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { ExpandableOverlayProps, ExpandableOverlayMethods } from '../../incubator/expandableOverlay';
 import { ModalTopBarProps } from '../modal/TopBar';
-import { TextFieldProps } from '../../../typings/components/Inputs';
 import { TextFieldMethods, TextFieldProps as NewTextFieldProps } from '../../incubator/TextField';
 export declare enum PickerModes {
     SINGLE = "SINGLE",
@@ -13,16 +12,12 @@ export declare enum PickerFieldTypes {
     filter = "filter",
     settings = "settings"
 }
-declare type PickerValueDeprecated = {
-    value: string | number;
-    label: string;
-};
-export declare type PickerSingleValue = string | number | PickerValueDeprecated;
-export declare type PickerMultiValue = PickerSingleValue[];
-export declare type PickerValue = PickerSingleValue | PickerMultiValue | undefined;
-declare type RenderPickerOverloads<ValueType> = ValueType extends PickerValue ? (value?: ValueType, label?: string) => React.ReactElement : never;
-declare type RenderPicker = RenderPickerOverloads<PickerValue>;
-declare type RenderCustomModalProps = {
+export type PickerSingleValue = string | number;
+export type PickerMultiValue = PickerSingleValue[];
+export type PickerValue = PickerSingleValue | PickerMultiValue | undefined;
+type RenderPickerOverloads<ValueType> = ValueType extends PickerValue ? (value?: ValueType, label?: string) => React.ReactElement : never;
+type RenderPicker = RenderPickerOverloads<PickerValue>;
+type RenderCustomModalProps = {
     visible: boolean;
     toggleModal: (show: boolean) => void;
     onSearchChange: (searchValue: string) => void;
@@ -36,7 +31,7 @@ export interface PickerSearchStyle {
     placeholderTextColor?: string;
     selectionColor?: string;
 }
-export declare type PickerBaseProps = Omit<TextFieldProps, 'value' | 'onChange'> & Omit<NewTextFieldProps, 'value' | 'onChange'> & ThemeComponent & {
+export type PickerBaseProps = Omit<NewTextFieldProps, 'value' | 'onChange'> & ThemeComponent & {
     /**
      * Temporary prop required for migration to Picker's new API
      */
@@ -133,18 +128,9 @@ export declare type PickerBaseProps = Omit<TextFieldProps, 'value' | 'onChange'>
      */
     renderCustomSearch?: (props: PickerItemsListProps) => React.ReactElement;
     /**
-     * @deprecated pass useWheelPicker prop instead
-     * Allow to use the native picker solution (different style for iOS and Android)
-     */
-    useNativePicker?: boolean;
-    /**
      * Use wheel picker instead of a list picker
      */
     useWheelPicker?: boolean;
-    /**
-     * Callback for rendering a custom native picker inside the dialog (relevant to native picker only)
-     */
-    renderNativePicker?: () => React.ReactElement;
     /**
      * Pass props to the list component that wraps the picker options (allows to control FlatList behavior)
      */
@@ -171,15 +157,15 @@ export declare type PickerBaseProps = Omit<TextFieldProps, 'value' | 'onChange'>
     testID?: string;
     children?: ReactNode | undefined;
 };
-export declare type PickerPropsWithSingle = PickerBaseProps & {
+export type PickerPropsWithSingle = PickerBaseProps & {
     mode?: PickerModes.SINGLE;
     value?: PickerSingleValue;
 };
-export declare type PickerPropsWithMulti = PickerBaseProps & {
+export type PickerPropsWithMulti = PickerBaseProps & {
     mode?: PickerModes.MULTI;
     value?: PickerMultiValue;
 };
-export declare type PickerProps = PickerPropsWithSingle | PickerPropsWithMulti;
+export type PickerProps = PickerPropsWithSingle | PickerPropsWithMulti;
 export interface PickerItemProps {
     /**
      * Item's value
@@ -232,11 +218,11 @@ export interface PickerContextProps extends Pick<PickerProps, 'migrate' | 'value
     onSelectedLayout: (event: any) => any;
     selectionLimit: PickerProps['selectionLimit'];
 }
-export declare type PickerItemsListProps = Pick<PropsWithChildren<PickerProps>, 'topBarProps' | 'listProps' | 'children' | 'showSearch' | 'searchStyle' | 'searchPlaceholder' | 'onSearchChange' | 'renderCustomSearch' | 'useSafeArea' | 'useWheelPicker' | 'testID'> & {
+export type PickerItemsListProps = Pick<PropsWithChildren<PickerProps>, 'topBarProps' | 'listProps' | 'children' | 'showSearch' | 'searchStyle' | 'searchPlaceholder' | 'onSearchChange' | 'renderCustomSearch' | 'useSafeArea' | 'useWheelPicker' | 'testID'> & {
     items?: {
         value: any;
         label: any;
     }[];
 };
-export declare type PickerMethods = TextFieldMethods & ExpandableOverlayMethods;
+export type PickerMethods = TextFieldMethods & ExpandableOverlayMethods;
 export {};

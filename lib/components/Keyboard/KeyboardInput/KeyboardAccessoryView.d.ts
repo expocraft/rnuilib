@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { LayoutChangeEvent } from 'react-native';
 import { KeyboardTrackingViewProps } from '../KeyboardTracking/KeyboardTrackingView';
-declare type kbTrackingViewProps = Pick<KeyboardTrackingViewProps, 'scrollBehavior' | 'revealKeyboardInteractive' | 'manageScrollView' | 'requiresSameParentToManageScrollView' | 'allowHitsOutsideBounds' | 'addBottomView' | 'bottomViewColor' | 'useSafeArea' | 'usesBottomTabs'>;
-export declare type KeyboardAccessoryViewProps = kbTrackingViewProps & {
+type kbTrackingViewProps = Pick<KeyboardTrackingViewProps, 'scrollBehavior' | 'revealKeyboardInteractive' | 'manageScrollView' | 'requiresSameParentToManageScrollView' | 'allowHitsOutsideBounds' | 'addBottomView' | 'bottomViewColor' | 'useSafeArea' | 'usesBottomTabs'>;
+export type KeyboardAccessoryViewProps = kbTrackingViewProps & {
     /**
      * Content to be rendered above the keyboard
      */
@@ -37,12 +37,6 @@ export declare type KeyboardAccessoryViewProps = kbTrackingViewProps & {
      * Callback that will be called once the keyboard has been closed
      */
     onKeyboardResigned?: () => void;
-    /**
-     * @deprecated
-     * Please use 'scrollBehavior' prop instead
-     * The scrolling behavior (use KeyboardAccessoryView.scrollBehaviors.NONE | SCROLL_TO_BOTTOM_INVERTED_ONLY | FIXED_OFFSET)
-     */
-    iOSScrollBehavior?: number;
     children?: React.ReactChild;
 };
 /**
@@ -51,14 +45,6 @@ export declare type KeyboardAccessoryViewProps = kbTrackingViewProps & {
  * @gif: https://github.com/wix/react-native-ui-lib/blob/master/demo/showcase/KeyboardAccessoryView/KeyboardAccessoryView.gif?raw=true
  */
 declare class KeyboardAccessoryView extends Component<KeyboardAccessoryViewProps> {
-    /**
-     * @deprecated Please use KeyboardAccessoryView.scrollBehaviors instead
-     */
-    static iosScrollBehaviors: {
-        NONE: any;
-        SCROLL_TO_BOTTOM_INVERTED_ONLY: any;
-        FIXED_OFFSET: any;
-    };
     static scrollBehaviors: {
         NONE: any;
         SCROLL_TO_BOTTOM_INVERTED_ONLY: any;

@@ -5,9 +5,13 @@ import Text from "../../components/text";
 import { ValidationMessagePosition } from "./types";
 import { getColorByState } from "./Presenter";
 import FieldContext from "./FieldContext";
+const DEFAULT_LABEL_COLOR = {
+  default: Colors.$textDefault,
+  readonly: Colors.$textNeutral
+};
 const Label = ({
   label,
-  labelColor = Colors.$textDefault,
+  labelColor = DEFAULT_LABEL_COLOR,
   labelStyle,
   labelProps,
   validationMessagePosition,

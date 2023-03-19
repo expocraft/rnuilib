@@ -14,7 +14,7 @@ export declare enum ButtonAnimationDirection {
     left = "left",
     right = "right"
 }
-export declare type ButtonProps = TouchableOpacityProps & TypographyModifiers & ColorsModifiers & BackgroundColorModifier & MarginModifiers & {
+export type ButtonProps = TouchableOpacityProps & TypographyModifiers & ColorsModifiers & BackgroundColorModifier & MarginModifiers & {
     /**
      * Text to show inside the button
      */
@@ -130,12 +130,12 @@ export declare type ButtonProps = TouchableOpacityProps & TypographyModifiers & 
      */
     animateTo?: ButtonAnimationDirection;
 };
-export declare type ButtonState = {
+export type ButtonState = {
     size?: number;
     borderRadius?: number;
     isLandscape?: boolean;
 };
-export declare type Props = ButtonProps & BaseComponentInjectedProps & ForwardRefInjectedProps;
+export type Props = ButtonProps & BaseComponentInjectedProps & ForwardRefInjectedProps;
 export declare const DEFAULT_PROPS: {
     iconOnRight: boolean;
 };

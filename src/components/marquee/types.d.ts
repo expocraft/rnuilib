@@ -7,7 +7,7 @@ export declare enum MarqueeDirections {
     UP = "UP",
     DOWN = "DOWN"
 }
-export declare type MarqueeProps = PropsWithChildren<{
+export type MarqueeProps = PropsWithChildren<{
     /**
      * Marquee label
      */

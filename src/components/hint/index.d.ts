@@ -15,9 +15,9 @@ interface HintTargetFrame {
     width?: number;
     height?: number;
 }
-declare type Position = Pick<ViewStyle, 'top' | 'bottom' | 'left' | 'right'>;
-declare type HintPositionStyle = Position & Pick<ViewStyle, 'alignItems'>;
-declare type Paddings = Pick<ViewStyle, 'paddingLeft' | 'paddingRight' | 'paddingVertical' | 'paddingHorizontal'>;
+type Position = Pick<ViewStyle, 'top' | 'bottom' | 'left' | 'right'>;
+type HintPositionStyle = Position & Pick<ViewStyle, 'alignItems'>;
+type Paddings = Pick<ViewStyle, 'paddingLeft' | 'paddingRight' | 'paddingVertical' | 'paddingHorizontal'>;
 export interface HintProps {
     /**
      * Control the visibility of the hint

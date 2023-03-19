@@ -1,7 +1,7 @@
 import { RefObject } from 'react';
 import { ScrollView, FlatList, LayoutChangeEvent } from 'react-native';
-export declare type ScrollToSupportedViews = ScrollView | FlatList;
-export declare type ScrollToProps<T extends ScrollToSupportedViews> = {
+export type ScrollToSupportedViews = ScrollView | FlatList;
+export type ScrollToProps<T extends ScrollToSupportedViews> = {
     /**
      * A reference to the ScrollView (or FlatList) which the items are in
      */
@@ -11,7 +11,7 @@ export declare type ScrollToProps<T extends ScrollToSupportedViews> = {
      */
     horizontal?: boolean;
 };
-export declare type ScrollToResultProps<T extends ScrollToSupportedViews> = {
+export type ScrollToResultProps<T extends ScrollToSupportedViews> = {
     /**
      * A reference to the ScrollView (or FlatList) which the items are in (from the props or a created one)
      */

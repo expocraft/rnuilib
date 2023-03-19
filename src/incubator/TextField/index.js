@@ -14,7 +14,7 @@ import { asBaseComponent, Constants, forwardRef } from "../../commons/new";
 import View from "../../components/view";
 import Text from "../../components/text";
 import { useMeasure } from "../../hooks";
-import { TextFieldProps, ValidationMessagePosition, FieldContextType, TextFieldMethods } from "./types";
+import { TextFieldProps, ValidationMessagePosition, FieldContextType, TextFieldMethods, TextFieldRef } from "./types";
 import { shouldHidePlaceholder } from "./Presenter";
 import Input from "./Input";
 import ValidationMessage from "./ValidationMessage";
@@ -65,6 +65,7 @@ const TextField = props => {
     placeholder,
     children,
     centered,
+    readonly = false,
     ...others
   } = usePreset(props);
   const {
@@ -83,10 +84,11 @@ const TextField = props => {
     return {
       ...fieldState,
       disabled: others.editable === false,
+      readonly,
       validateField,
       checkValidity
     };
-  }, [fieldState, others.editable, validateField, checkValidity]);
+  }, [fieldState, others.editable, readonly, validateField, checkValidity]);
   const leadingAccessoryClone = useMemo(() => {
     if (leadingAccessory) {
       return React.cloneElement(leadingAccessory, {
@@ -139,7 +141,7 @@ const TextField = props => {
                   {placeholder}
                 </Text>}
               {floatingPlaceholder && <FloatingPlaceholder defaultValue={others.defaultValue} placeholder={placeholder} floatingPlaceholderStyle={_floatingPlaceholderStyle} floatingPlaceholderColor={floatingPlaceholderColor} floatOnFocus={floatOnFocus} validationMessagePosition={validationMessagePosition} extraOffset={leadingAccessoryMeasurements?.width} testID={`${props.testID}.floatingPlaceholder`} />}
-              <Input placeholderTextColor={hidePlaceholder ? 'transparent' : placeholderTextColor} value={fieldState.value} {...others} style={inputStyle} onFocus={onFocus} onBlur={onBlur} onChangeText={onChangeText} placeholder={placeholder} hint={hint} />
+              <Input placeholderTextColor={hidePlaceholder ? 'transparent' : placeholderTextColor} value={fieldState.value} {...others} readonly={readonly} style={inputStyle} onFocus={onFocus} onBlur={onBlur} onChangeText={onChangeText} placeholder={placeholder} hint={hint} />
             </View>}
           {trailingAccessory}
           {/* </View> */}
@@ -154,7 +156,7 @@ const TextField = props => {
 };
 TextField.displayName = 'Incubator.TextField';
 TextField.validationMessagePositions = ValidationMessagePosition;
-export { TextFieldProps, FieldContextType, TextFieldMethods };
+export { TextFieldProps, FieldContextType, TextFieldMethods, TextFieldRef, ValidationMessagePosition as TextFieldValidationMessagePosition };
 export default asBaseComponent(forwardRef(TextField), {
   modifiersOptions: {
     margins: true,

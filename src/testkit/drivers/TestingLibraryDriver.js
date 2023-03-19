@@ -19,8 +19,12 @@ export class TestingLibraryDriver {
     if (!this.renderAPI) {
       throw new SelectorChainingException();
     }
-    const instances = await this.renderAPI.findAllByTestId(testId).catch(() => []);
-    return new TestingLibraryDriver(instances);
+    const instances = await this.renderAPI.queryAllByTestId(testId);
+    if (instances) {
+      return Promise.resolve(new TestingLibraryDriver(instances));
+    } else {
+      return Promise.reject(new NoSelectorException());
+    }
   };
   selectorByText = async text => {
     if (!this.renderAPI) {
@@ -51,13 +55,13 @@ export class TestingLibraryDriver {
     const instance = await this.instance();
     return _get(instance, 'props');
   };
-  press = async () => {
+  press = () => {
     if (!this.reactTestInstances) {
       throw new NoSelectorException();
     }
     this.validateExplicitInstance();
     this.validateSingleInstance();
-    await act(() => fireEvent.press(this.reactTestInstances[0]));
+    fireEvent.press(this.reactTestInstances[0]);
   };
   typeText = async text => {
     console.log('this.reactTestInstances: ', this.reactTestInstances);

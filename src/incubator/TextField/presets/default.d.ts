@@ -5,6 +5,7 @@ declare const _default: {
         focus: string;
         error: string;
         disabled: string;
+        readonly: string;
     };
     placeholderTextColor: {
         default: string;
@@ -16,6 +17,7 @@ declare const _default: {
         focus: string;
         error: string;
         disabled: string;
+        readonly: string;
     };
     fieldStyle: {
         borderBottomWidth: number;

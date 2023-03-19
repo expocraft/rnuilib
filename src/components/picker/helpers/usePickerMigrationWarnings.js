@@ -2,6 +2,9 @@ import _isPlainObject from "lodash/isPlainObject";
 import { useEffect } from 'react';
 import { LogService } from "../../../services";
 import { PickerModes } from "../types";
+
+// @ts-expect-error TODO: Remove this whole file when migration is completed
+
 const usePickerMigrationWarnings = props => {
   const {
     value,

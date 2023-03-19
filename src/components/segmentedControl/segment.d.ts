@@ -1,7 +1,7 @@
 import React from 'react';
 import { LayoutChangeEvent, ImageSourcePropType, ImageStyle, StyleProp } from 'react-native';
 import Reanimated from 'react-native-reanimated';
-export declare type SegmentedControlItemProps = {
+export type SegmentedControlItemProps = {
     /**
      * The label of the segment.
      */
@@ -19,7 +19,7 @@ export declare type SegmentedControlItemProps = {
      */
     iconOnRight?: boolean;
 };
-export declare type SegmentProps = SegmentedControlItemProps & {
+export type SegmentProps = SegmentedControlItemProps & {
     /**
      * Shared value of the current selected index.
      */

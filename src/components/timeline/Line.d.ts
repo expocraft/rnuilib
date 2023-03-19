@@ -1,7 +1,7 @@
 import React from 'react';
 import { ViewStyle } from 'react-native';
 import { LineProps } from './types';
-declare type LinePropsInternal = LineProps & {
+type LinePropsInternal = LineProps & {
     top?: boolean;
     style?: ViewStyle;
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { LayoutChangeEvent } from 'react-native';
 import { State } from 'react-native-gesture-handler';
 import { ViewProps } from '../components/view';
-export declare type TouchableOpacityProps = {
+export type TouchableOpacityProps = {
     /**
      * Background color
      */

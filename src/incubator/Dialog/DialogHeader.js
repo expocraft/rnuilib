@@ -33,10 +33,10 @@ const DialogHeader = (props = {}) => {
     const Container = onPress ? TouchableOpacity : View;
     if (!_isEmpty(title) || !_isEmpty(subtitle)) {
       return <Container onPress={onPress} center flex>
-          {title && <Text $textDefault {...titleProps} marginB-s3 style={titleStyle}>
+          {!_isEmpty(title) && <Text $textDefault {...titleProps} marginB-s3 style={titleStyle}>
               {title}
             </Text>}
-          {subtitle && <Text $textDefault {...subtitleProps} marginB-s3 style={subtitleStyle}>
+          {!_isEmpty(subtitle) && <Text $textDefault {...subtitleProps} marginB-s3 style={subtitleStyle}>
               {subtitle}
             </Text>}
         </Container>;

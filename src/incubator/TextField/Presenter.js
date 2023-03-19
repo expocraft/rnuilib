@@ -16,6 +16,8 @@ export function getColorByState(color, context) {
   } else if (_isPlainObject(color)) {
     if (context?.disabled) {
       finalColor = color?.disabled;
+    } else if (context?.readonly) {
+      finalColor = color?.readonly;
     } else if (!context?.isValid) {
       finalColor = color?.error;
     } else if (context?.isFocused) {

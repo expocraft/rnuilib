@@ -113,11 +113,17 @@ class TouchableOpacity extends PureComponent {
       }, flexStyle, paddings, margins, alignments, style, this.activeBackgroundStyle]} ref={forwardedRef} />
     );
   }
-  onPress() {
-    this.props.onPress?.(this.props);
+  onPress(event) {
+    this.props.onPress?.({
+      ...this.props,
+      event
+    });
   }
-  onLongPress = () => {
-    this.props.onLongPress?.(this.props);
+  onLongPress = event => {
+    this.props.onLongPress?.({
+      ...this.props,
+      event
+    });
   };
 }
 const modifiersOptions = {

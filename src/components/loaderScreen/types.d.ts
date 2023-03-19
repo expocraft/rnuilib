@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { ActivityIndicatorProps, TextStyle, ViewStyle } from 'react-native';
-export declare type LoaderScreenProps = ActivityIndicatorProps & {
+export type LoaderScreenProps = ActivityIndicatorProps & {
     /**
      * Color of the loading indicator
      */

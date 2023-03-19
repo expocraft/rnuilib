@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { EventSubscription } from 'react-native';
-export declare type CustomKeyboardViewBaseProps = {
+export type CustomKeyboardViewBaseProps = {
     inputRef?: any;
     initialProps?: any;
     component?: string;

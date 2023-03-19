@@ -3,7 +3,8 @@ import { Colors, Spacings, Typography } from "../../../style";
 const colorByState = {
   focus: Colors.$textPrimary,
   error: Colors.$textDangerLight,
-  disabled: Colors.$textDisabled
+  disabled: Colors.$textDisabled,
+  readonly: Colors.$textNeutral
 };
 const placeholderTextColorByState = {
   default: Colors.$textNeutral,

@@ -10,7 +10,7 @@ export interface ExpandableOverlayMethods {
 export interface RenderCustomOverlayProps extends ExpandableOverlayMethods {
     visible: boolean;
 }
-export declare type ExpandableOverlayProps = TouchableOpacityProps & PropsWithChildren<{
+export type ExpandableOverlayProps = TouchableOpacityProps & PropsWithChildren<{
     /**
      * The content to render inside the expandable modal/dialog
      */

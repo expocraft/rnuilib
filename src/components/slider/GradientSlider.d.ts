@@ -4,14 +4,14 @@ import { StyleProp, ViewStyle } from 'react-native';
 import { ForwardRefInjectedProps } from '../../commons/new';
 import { SliderProps } from './index';
 import { SliderContextProps } from './context/SliderContext';
-declare type SliderOnValueChange = (value: string, alfa: number) => void;
+type SliderOnValueChange = (value: string, alfa: number) => void;
 export declare enum GradientSliderTypes {
     DEFAULT = "default",
     HUE = "hue",
     LIGHTNESS = "lightness",
     SATURATION = "saturation"
 }
-export declare type GradientSliderProps = Omit<SliderProps, 'onValueChange'> & {
+export type GradientSliderProps = Omit<SliderProps, 'onValueChange'> & {
     /**
      * The gradient color
      */
@@ -41,13 +41,13 @@ export declare type GradientSliderProps = Omit<SliderProps, 'onValueChange'> & {
      */
     disabled?: boolean;
 };
-declare type GradientSliderComponentProps = {
+type GradientSliderComponentProps = {
     /**
      * Context of the slider group
      */
     sliderContext: SliderContextProps;
 } & GradientSliderProps & typeof defaultProps;
-declare type Props = GradientSliderComponentProps & ForwardRefInjectedProps;
+type Props = GradientSliderComponentProps & ForwardRefInjectedProps;
 interface GradientSliderState {
     color: tinycolor.ColorFormats.HSLA;
     initialColor: tinycolor.ColorFormats.HSLA;

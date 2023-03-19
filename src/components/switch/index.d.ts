@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleProp, ViewStyle, ColorValue } from 'react-native';
-export declare type SwitchProps = {
+export type SwitchProps = {
     /**
      * The value of the switch. If true the switch will be turned on. Default value is false
      */

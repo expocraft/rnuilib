@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageProps } from '../image';
-export declare type CardImageProps = ImageProps & {
+export type CardImageProps = ImageProps & {
     /**
      * Image width
      */

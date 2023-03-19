@@ -13,7 +13,7 @@ export interface CardSelectionOptions {
     hideIndicator?: boolean;
 }
 export { CardSectionProps };
-export declare type CardProps = ViewProps & TouchableOpacityProps & {
+export type CardProps = ViewProps & TouchableOpacityProps & {
     /**
      * card custom width
      */

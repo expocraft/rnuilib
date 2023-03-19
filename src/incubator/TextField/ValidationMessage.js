@@ -24,6 +24,7 @@ const ValidationMessage = ({
 };
 const styles = StyleSheet.create({
   validationMessage: {
+    flexShrink: 1,
     minHeight: 20
   }
 });

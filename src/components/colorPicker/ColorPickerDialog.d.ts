@@ -31,6 +31,6 @@ interface Props extends DialogProps {
         input?: string;
     };
 }
-export declare type ColorPickerDialogProps = Props;
+export type ColorPickerDialogProps = Props;
 declare const _default: React.ComponentClass<Props & ThemeComponent, any>;
 export default _default;

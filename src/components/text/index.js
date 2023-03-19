@@ -1,12 +1,12 @@
-import _isString from 'lodash/isString';
-import _map from 'lodash/map';
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
-import React, {PureComponent} from 'react';
-import {Text as RNText, StyleSheet, Animated} from 'react-native';
-import {asBaseComponent, forwardRef} from '../../commons/new';
-import {Colors} from '../../style';
-import {TextUtils} from '../../utils';
+import _isString from "lodash/isString";
+import _map from "lodash/map";
+import _isArray from "lodash/isArray";
+import _isEmpty from "lodash/isEmpty";
+import React, { PureComponent } from 'react';
+import { Text as RNText, StyleSheet, Animated } from 'react-native';
+import { asBaseComponent, forwardRef } from "../../commons/new";
+import { Colors } from "../../style";
+import { TextUtils } from "../../utils";
 /**
  * @description: A wrapper for Text component with extra functionality like modifiers support
  * @extends: Text
@@ -24,7 +24,10 @@ class Text extends PureComponent {
   // }
 
   renderText(children) {
-    const {highlightString, highlightStyle} = this.props;
+    const {
+      highlightString,
+      highlightStyle
+    } = this.props;
     if (!_isEmpty(highlightString)) {
       if (_isArray(children)) {
         return _map(children, child => {
@@ -33,51 +36,42 @@ class Text extends PureComponent {
       }
       if (_isString(children)) {
         const textParts = highlightString && TextUtils.getPartsByHighlight(children, highlightString);
-        return (
-          textParts &&
-          _map(textParts, (text, index) => {
-            return (
-              <RNText
-                key={index}
-                style={text.shouldHighlight ? [styles.highlight, highlightStyle] : styles.notHighlight}
-              >
+        return textParts && _map(textParts, (text, index) => {
+          return <RNText key={index} style={text.shouldHighlight ? [styles.highlight, highlightStyle] : styles.notHighlight}>
                 {text.string}
-              </RNText>
-            );
-          })
-        );
+              </RNText>;
+        });
       }
     }
     return children;
   }
   render() {
-    const {modifiers, style, center, uppercase, underline, children, forwardedRef, ...others} = this.props;
-    const color = this.props.color || modifiers.color;
-    const {margins, typography, backgroundColor, flexStyle} = modifiers;
-
-    const textStyle = [
-      styles.container,
-      center && styles.centered,
-      uppercase && styles.uppercase,
-      underline && styles.underline,
-      underline && styles.underline,
+    const {
+      modifiers,
       style,
+      center,
+      uppercase,
+      underline,
+      children,
+      forwardedRef,
+      ...others
+    } = this.props;
+    const color = this.props.color || modifiers.color;
+    const {
+      margins,
       typography,
-      color && {
-        color
-      },
-      backgroundColor && {
-        backgroundColor
-      },
-      flexStyle,
-      margins
-    ];
+      backgroundColor,
+      flexStyle
+    } = modifiers;
+    const textStyle = [styles.container, typography, color && {
+      color
+    }, backgroundColor && {
+      backgroundColor
+    }, flexStyle, margins, center && styles.centered, uppercase && styles.uppercase, underline && styles.underline, style];
     const TextContainer = this.TextContainer;
-    return (
-      <TextContainer {...others} style={textStyle} ref={forwardedRef}>
+    return <TextContainer {...others} style={textStyle} ref={forwardedRef}>
         {this.renderText(children)}
-      </TextContainer>
-    );
+      </TextContainer>;
   }
 }
 const styles = StyleSheet.create({
@@ -102,7 +96,7 @@ const styles = StyleSheet.create({
     color: undefined
   }
 });
-export {Text}; // For tests
+export { Text }; // For tests
 
 const modifiersOptions = {
   color: true,

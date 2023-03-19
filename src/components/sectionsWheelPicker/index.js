@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { Constants, asBaseComponent } from "../../commons/new";
 import View from "../view";
-import { WheelPicker } from "../../incubator";
+import WheelPicker from "../WheelPicker";
 /**
  * @description: SectionsWheelPicker component for presenting set of wheelPickers
  * @example: https://github.com/wix/react-native-ui-lib/blob/master/demo/src/screens/componentScreens/SectionsWheelPickerScreen.tsx

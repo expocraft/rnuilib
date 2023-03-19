@@ -108,6 +108,8 @@ class ColorSwatch extends PureComponent {
       style,
       color,
       onPress,
+      unavailable,
+      size = DEFAULT_SIZE,
       ...others
     } = this.props;
     const {
@@ -121,9 +123,15 @@ class ColorSwatch extends PureComponent {
       bottom: 10,
       left: 10,
       right: 10
-    }} onPress={this.onPress} style={[this.styles.container, style]} onLayout={this.onLayout} {...accessibilityInfo}>
+    }} onPress={this.onPress} style={[this.styles.container, {
+      width: size,
+      height: size,
+      borderRadius: size / 2
+    }, style]} onLayout={this.onLayout} {...accessibilityInfo}>
         {Colors.isTransparent(color) && <Image source={transparentImage} style={this.styles.transparentImage} resizeMode={'cover'} />}
-        <Animated.Image source={Assets.icons.check} style={{
+        {unavailable ? <View style={[this.styles.unavailable, {
+        backgroundColor: tintColor
+      }]} /> : <Animated.Image source={Assets.icons.check} style={{
         tintColor,
         opacity: isSelected,
         transform: [{
@@ -131,7 +139,7 @@ class ColorSwatch extends PureComponent {
         }, {
           scaleY: isSelected
         }]
-      }} />
+      }} />}
       </Container>;
   }
   renderSwatch = () => {
@@ -167,12 +175,9 @@ function createStyles({
   return StyleSheet.create({
     container: {
       backgroundColor: color,
-      width: DEFAULT_SIZE,
-      height: DEFAULT_SIZE,
-      borderRadius: DEFAULT_SIZE / 2,
-      margin: SWATCH_MARGIN,
       borderWidth: color === 'transparent' ? undefined : 1,
-      borderColor: Colors.rgba(Colors.$outlineDisabledHeavy, 0.2)
+      borderColor: Colors.rgba(Colors.$outlineDisabledHeavy, 0.2),
+      margin: SWATCH_MARGIN
     },
     transparentImage: {
       ...StyleSheet.absoluteFillObject,
@@ -181,6 +186,14 @@ function createStyles({
       borderWidth: 1,
       borderRadius: BorderRadiuses.br100,
       borderColor: Colors.rgba(Colors.$outlineDisabledHeavy, 0.2)
+    },
+    unavailable: {
+      height: '100%',
+      width: 3,
+      transform: [{
+        rotate: '45deg'
+      }],
+      opacity: 0.7
     }
   });
 }

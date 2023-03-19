@@ -1,16 +1,16 @@
 /// <reference types="react" />
 import { ViewStyle } from 'react-native';
-declare type HighlightFrameType = {
+type HighlightFrameType = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-declare type HighlightViewTagParams = {
+type HighlightViewTagParams = {
     padding: number | ViewStyle['padding'];
     offset: Pick<HighlightFrameType, 'x' | 'y'>;
 };
-export declare type HighlighterOverlayViewProps = {
+export type HighlighterOverlayViewProps = {
     visible: boolean;
     overlayColor?: string;
     borderRadius?: number;

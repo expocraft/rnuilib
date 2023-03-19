@@ -3,9 +3,8 @@ import _isUndefined from "lodash/isUndefined";
 import _isNil from "lodash/isNil";
 import _toLower from "lodash/toLower";
 import _split from "lodash/split";
-import React, { useEffect, useMemo, forwardRef } from 'react';
+import React, { useMemo, forwardRef } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { LogService } from "../../services";
 import { Colors, BorderRadiuses } from "../../style";
 import { extractAccessibilityProps } from "../../commons/modifiers";
 import Badge from "../badge";
@@ -34,7 +33,6 @@ const DEFAULT_BADGE_SIZE = 10;
 const Avatar = forwardRef((props, ref) => {
   const themeProps = useThemeProps(props, 'Avatar');
   const {
-    imageSource,
     source,
     size = 50,
     labelColor = Colors.$textDefault,
@@ -65,14 +63,6 @@ const Avatar = forwardRef((props, ref) => {
     borderWidth: badgeBorderWidth = 0
   } = badgeProps;
   const badgeSize = _badgeSize || DEFAULT_BADGE_SIZE;
-  useEffect(() => {
-    if (imageSource) {
-      LogService.warn('uilib: imageSource prop is deprecated, use source instead.');
-    }
-  }, [imageSource]);
-  const _source = useMemo(() => {
-    return source || imageSource;
-  }, [source, imageSource]);
   const _baseContainerStyle = useMemo(() => {
     return {
       width: size,
@@ -147,11 +137,11 @@ const Avatar = forwardRef((props, ref) => {
     }];
   }, [size, initialsStyle, labelColor]);
   const textContainerStyle = useMemo(() => {
-    const hasImage = !_isUndefined(_source);
+    const hasImage = !_isUndefined(source);
     return [styles.initialsContainer, {
       backgroundColor: _backgroundColor
     }, hasImage && styles.initialsContainerWithInset];
-  }, [_source, _backgroundColor]);
+  }, [source, _backgroundColor]);
   const accessibilityProps = useMemo(() => {
     return extractAccessibilityProps(props);
   }, [props]);
@@ -159,10 +149,10 @@ const Avatar = forwardRef((props, ref) => {
     return [_baseContainerStyle, StyleSheet.absoluteFillObject, imageStyle];
   }, [_baseContainerStyle, imageStyle]);
   const renderImage = () => {
-    if (_source !== undefined) {
+    if (source !== undefined) {
       // Looks like reanimated does not support SVG
-      const ImageContainer = animate && !isSvg(_source) ? AnimatedImage : Image;
-      return <ImageContainer style={_imageStyle} source={_source} onLoadStart={onImageLoadStart} onLoadEnd={onImageLoadEnd} onError={onImageLoadError} testID={`${testID}.image`} width={size} height={size} containerStyle={_baseContainerStyle} {...imageProps} />;
+      const ImageContainer = animate && !isSvg(source) ? AnimatedImage : Image;
+      return <ImageContainer style={_imageStyle} source={source} onLoadStart={onImageLoadStart} onLoadEnd={onImageLoadEnd} onError={onImageLoadError} testID={`${testID}.image`} width={size} height={size} containerStyle={_baseContainerStyle} {...imageProps} />;
     }
   };
   const renderBadge = () => {

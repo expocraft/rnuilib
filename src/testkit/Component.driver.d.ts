@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { UniDriver, UniDriverClass } from './UniDriver';
-export declare type ComponentDriverArgs = {
+export type ComponentDriverArgs = {
     testID: string;
     Driver?: UniDriverClass;
     component: JSX.Element;
@@ -18,7 +18,7 @@ export declare class ComponentDriver {
     constructor({ testID, component, Driver }: ComponentDriverArgs);
     exists: () => Promise<boolean>;
     getElement: () => Promise<any>;
-    press: () => Promise<any>;
+    press: () => Promise<void>;
     protected getByTestId: (testID: string) => Promise<any>;
     getElementProps: () => Promise<any>;
     getPropsByTestId: (testID: string) => Promise<any>;

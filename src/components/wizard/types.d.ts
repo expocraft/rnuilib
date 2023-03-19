@@ -58,7 +58,7 @@ export interface WizardStepProps {
      */
     accessibilityInfo?: string;
 }
-export declare type WizardStepConfig = Omit<WizardStepProps, 'state'>;
+export type WizardStepConfig = Omit<WizardStepProps, 'state'>;
 export interface WizardStepsConfig {
     enabled?: WizardStepConfig;
     disabled?: WizardStepConfig;

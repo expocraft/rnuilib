@@ -52,12 +52,6 @@ export interface SkeletonViewProps extends AccessibilityProps, AlignmentModifier
      */
     customValue?: any;
     /**
-     * @deprecated
-     * - Please use customValue instead.
-     * - Custom value of any type to pass on to SkeletonView and receive back in the renderContent callback.
-     */
-    contentData?: any;
-    /**
      * The type of the skeleton view.
      * Types: LIST_ITEM and TEXT_CONTENT (using SkeletonView.templates.###)
      */
@@ -78,32 +72,6 @@ export interface SkeletonViewProps extends AccessibilityProps, AlignmentModifier
      * This is needed because the `key` prop is not accessible.
      */
     timesKey?: string;
-    /**
-     * @deprecated
-     * - Pass via listProps instead.
-     * - The size of the skeleton view.
-     * - Types: SMALL and LARGE (using SkeletonView.sizes.###)
-     */
-    size?: Size;
-    /**
-     * @deprecated
-     * - Pass via listProps instead.
-     * - Add content to the skeleton.
-     * - Types: AVATAR and THUMBNAIL (using SkeletonView.contentTypes.###)
-     */
-    contentType?: ContentType;
-    /**
-     * @deprecated
-     * - Pass via listProps instead.
-     * - Whether to hide the list item template separator
-     */
-    hideSeparator?: boolean;
-    /**
-     * @deprecated
-     * - Pass via listProps instead.
-     * - Whether to show the last list item template separator
-     */
-    showLastSeparator?: boolean;
     /**
      * The height of the skeleton view
      */
@@ -170,7 +138,7 @@ declare class SkeletonView extends Component<SkeletonViewProps, SkeletonState> {
     getDefaultSkeletonProps: (input?: {
         circleOverride: boolean;
         style: StyleProp<ViewStyle>;
-    } | undefined) => {
+    }) => {
         shimmerColors: string[];
         isReversed: boolean;
         style: StyleProp<ViewStyle>[];
@@ -178,11 +146,7 @@ declare class SkeletonView extends Component<SkeletonViewProps, SkeletonState> {
         height: number;
         shimmerStyle: StyleProp<ViewStyle>;
     };
-    get size(): Size | undefined;
     get contentSize(): 40 | 48;
-    get contentType(): ContentType | undefined;
-    get hideSeparator(): boolean | undefined;
-    get showLastSeparator(): boolean | undefined;
     renderListItemLeftContent: () => JSX.Element | undefined;
     renderStrip: (isMain: boolean, length: number, marginTop: number) => JSX.Element;
     renderListItemContentStrips: () => JSX.Element;

@@ -27,7 +27,7 @@ export interface ExtractedStyle {
     flexStyle?: ReturnType<typeof extractFlexStyle>;
     positionStyle?: ReturnType<typeof extractPositionStyle>;
 }
-export declare type ModifiersOptions = {
+export type ModifiersOptions = {
     color?: boolean;
     typography?: boolean;
     backgroundColor?: boolean;
@@ -61,31 +61,31 @@ declare const STYLE_KEY_CONVERTERS: {
     readonly flexG: "flexGrow";
     readonly flexS: "flexShrink";
 };
-export declare type PaddingLiterals = keyof typeof PADDING_VARIATIONS;
-export declare type NativePaddingKeyType = typeof PADDING_VARIATIONS[PaddingLiterals];
-export declare type MarginLiterals = keyof typeof MARGIN_VARIATIONS;
-export declare type NativeMarginModifierKeyType = typeof MARGIN_VARIATIONS[MarginLiterals];
-export declare type FlexLiterals = keyof typeof STYLE_KEY_CONVERTERS;
-export declare type NativeFlexModifierKeyType = typeof STYLE_KEY_CONVERTERS[FlexLiterals];
-export declare type ColorLiterals = keyof (typeof colorsPalette & typeof DesignTokens);
-export declare type TypographyLiterals = keyof typeof TypographyPresets;
-export declare type BorderRadiusLiterals = keyof typeof BorderRadiusesLiterals;
-export declare type AlignmentLiterals = 'row' | 'spread' | 'center' | 'centerH' | 'centerV' | 'left' | 'right' | 'top' | 'bottom';
-export declare type PositionLiterals = 'absF' | 'absL' | 'absR' | 'absT' | 'absB' | 'absV' | 'absH';
-export declare type Modifier<T extends string> = Partial<Record<T, boolean>>;
-export declare type CustomModifier = {
+export type PaddingLiterals = keyof typeof PADDING_VARIATIONS;
+export type NativePaddingKeyType = typeof PADDING_VARIATIONS[PaddingLiterals];
+export type MarginLiterals = keyof typeof MARGIN_VARIATIONS;
+export type NativeMarginModifierKeyType = typeof MARGIN_VARIATIONS[MarginLiterals];
+export type FlexLiterals = keyof typeof STYLE_KEY_CONVERTERS;
+export type NativeFlexModifierKeyType = typeof STYLE_KEY_CONVERTERS[FlexLiterals];
+export type ColorLiterals = keyof (typeof colorsPalette & typeof DesignTokens);
+export type TypographyLiterals = keyof typeof TypographyPresets;
+export type BorderRadiusLiterals = keyof typeof BorderRadiusesLiterals;
+export type AlignmentLiterals = 'row' | 'spread' | 'center' | 'centerH' | 'centerV' | 'left' | 'right' | 'top' | 'bottom';
+export type PositionLiterals = 'absF' | 'absL' | 'absR' | 'absT' | 'absB' | 'absV' | 'absH';
+export type Modifier<T extends string> = Partial<Record<T, boolean>>;
+export type CustomModifier = {
     [key: string]: boolean;
 };
-export declare type TypographyModifiers = Modifier<TypographyLiterals> | CustomModifier;
-export declare type ColorsModifiers = Modifier<ColorLiterals> | CustomModifier;
-export declare type BackgroundColorModifier = Modifier<'bg'>;
-export declare type AlignmentModifiers = Modifier<AlignmentLiterals>;
-export declare type PositionModifiers = Modifier<PositionLiterals>;
-export declare type PaddingModifiers = Modifier<PaddingLiterals>;
-export declare type MarginModifiers = Modifier<MarginLiterals>;
-export declare type FlexModifiers = Modifier<FlexLiterals>;
-export declare type BorderRadiusModifiers = Modifier<BorderRadiusLiterals>;
-export declare type ContainerModifiers = AlignmentModifiers & PositionModifiers & PaddingModifiers & MarginModifiers & FlexModifiers & BorderRadiusModifiers & BackgroundColorModifier;
+export type TypographyModifiers = Modifier<TypographyLiterals> | CustomModifier;
+export type ColorsModifiers = Modifier<ColorLiterals> | CustomModifier;
+export type BackgroundColorModifier = Modifier<'bg'>;
+export type AlignmentModifiers = Modifier<AlignmentLiterals>;
+export type PositionModifiers = Modifier<PositionLiterals>;
+export type PaddingModifiers = Modifier<PaddingLiterals>;
+export type MarginModifiers = Modifier<MarginLiterals>;
+export type FlexModifiers = Modifier<FlexLiterals>;
+export type BorderRadiusModifiers = Modifier<BorderRadiusLiterals>;
+export type ContainerModifiers = AlignmentModifiers & PositionModifiers & PaddingModifiers & MarginModifiers & FlexModifiers & BorderRadiusModifiers & BackgroundColorModifier;
 export declare function extractColorValue(props: Dictionary<any>): any;
 export declare function extractBackgroundColorValue(props: Dictionary<any>): any;
 export declare function extractTypographyValue(props: Dictionary<any>): object | undefined;
@@ -95,7 +95,7 @@ export declare function extractAlignmentsValues(props: Dictionary<any>): any;
 export declare function extractPositionStyle(props: Dictionary<any>): {} | undefined;
 export declare function extractFlexStyle(props: Dictionary<any>): Partial<Record<NativeFlexModifierKeyType, number>> | undefined;
 export declare function extractAccessibilityProps(props?: any): Partial<any>;
-export declare function extractAnimationProps(props?: any): Pick<any, "animation" | "duration" | "delay" | "direction" | "easing" | "iterationCount" | "transition" | "onAnimationBegin" | "onAnimationEnd" | "useNativeDriver">;
+export declare function extractAnimationProps(props?: any): Pick<any, "direction" | "animation" | "duration" | "delay" | "easing" | "iterationCount" | "transition" | "onAnimationBegin" | "onAnimationEnd" | "useNativeDriver">;
 export declare function extractBorderRadiusValue(props: Dictionary<any>): number | undefined;
 export declare function extractModifierProps(props: Dictionary<any>): _.Dictionary<any>;
 /**

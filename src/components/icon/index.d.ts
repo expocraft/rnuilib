@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageProps } from 'react-native';
 import { BaseComponentInjectedProps, MarginModifiers } from '../../commons/new';
-export declare type IconProps = ImageProps & MarginModifiers & {
+export type IconProps = ImageProps & MarginModifiers & {
     /**
      * if provided icon source will be driven from asset name
      */
@@ -28,7 +28,7 @@ export declare type IconProps = ImageProps & MarginModifiers & {
  * @extends: Image
  * @extendsLink: https://reactnative.dev/docs/image
  */
-declare type Props = IconProps & BaseComponentInjectedProps;
+type Props = IconProps & BaseComponentInjectedProps;
 declare const _default: React.ComponentClass<ImageProps & Partial<Record<"margin" | "marginL" | "marginT" | "marginR" | "marginB" | "marginH" | "marginV", boolean>> & {
     /**
      * if provided icon source will be driven from asset name

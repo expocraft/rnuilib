@@ -8,7 +8,7 @@ export declare enum BadgePosition {
     BOTTOM_RIGHT = "BOTTOM_RIGHT",
     BOTTOM_LEFT = "BOTTOM_LEFT"
 }
-export declare type AutoColorsProps = {
+export type AutoColorsProps = {
     /**
      * Avatar colors to be used when useAutoColors is true
      */
@@ -22,7 +22,7 @@ export declare type AutoColorsProps = {
      */
     defaultColor?: string;
 };
-export declare type AvatarProps = Pick<AccessibilityProps, 'accessibilityLabel'> & PropsWithChildren<{
+export type AvatarProps = Pick<AccessibilityProps, 'accessibilityLabel'> & PropsWithChildren<{
     /**
      * Adds fade in animation when Avatar image loads
      */
@@ -47,10 +47,6 @@ export declare type AvatarProps = Pick<AccessibilityProps, 'accessibilityLabel'>
      * The image source (external or assets)
      */
     source?: ImageSourcePropType;
-    /**
-     * @deprecated use 'source' prop
-     */
-    imageSource?: ImageSourcePropType;
     /**
      * Image props object
      */
@@ -162,10 +158,6 @@ declare const Avatar: React.ForwardRefExoticComponent<Pick<AccessibilityProps, "
      */
     source?: ImageSourcePropType | undefined;
     /**
-     * @deprecated use 'source' prop
-     */
-    imageSource?: ImageSourcePropType | undefined;
-    /**
      * Image props object
      */
     imageProps?: ImageProps | undefined;
@@ -269,10 +261,6 @@ declare const _default: React.ForwardRefExoticComponent<Pick<AccessibilityProps,
      * The image source (external or assets)
      */
     source?: ImageSourcePropType | undefined;
-    /**
-     * @deprecated use 'source' prop
-     */
-    imageSource?: ImageSourcePropType | undefined;
     /**
      * Image props object
      */
