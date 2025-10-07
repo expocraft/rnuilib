@@ -5,8 +5,6 @@ import _times from "lodash/times";
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useSharedValue } from 'react-native-reanimated';
 import { useScrollTo } from "../../hooks";
-import { Constants } from "../../commons/new";
-const FIX_RTL = Constants.isRTL;
 export let OffsetType = /*#__PURE__*/function (OffsetType) {
   OffsetType["CENTER"] = "CENTER";
   OffsetType["DYNAMIC"] = "DYNAMIC";
@@ -67,6 +65,12 @@ const useScrollToItem = props => {
     const rightOffsets = [];
     rightOffsets.push(-containerWidth + widths[0] + outerSpacing + innerSpacing);
     while (index < itemsCount) {
+      /* map animated widths and offsets */
+      itemsWidthsAnimated.value[index] = widths[index];
+      if (index > 0) {
+        itemsOffsetsAnimated.value[index] = itemsOffsetsAnimated.value[index - 1] + itemsWidthsAnimated.value[index - 1];
+      }
+
       /* calc center, left and right offsets */
       centeredOffsets[index] = currentCenterOffset - screenCenter + widths[index] / 2;
       ++index;
@@ -88,23 +92,9 @@ const useScrollToItem = props => {
       RIGHT: rightOffsets
     }); // default for DYNAMIC is CENTER
 
-    // Update shared values
-    // @ts-expect-error pretty sure this is a bug in reanimated since itemsWidthsAnimated is defined as SharedValue<number[]>
-    itemsWidthsAnimated.modify(value => {
-      'worklet';
-
-      return value.map((_, index) => widths[index]);
-    });
-    itemsOffsetsAnimated.modify(value => {
-      'worklet';
-
-      value.forEach((_, index) => {
-        if (index > 0) {
-          value[index] = value[index - 1] + widths[index - 1];
-        }
-      });
-      return value;
-    });
+    // trigger value change
+    itemsWidthsAnimated.value = [...itemsWidthsAnimated.value];
+    itemsOffsetsAnimated.value = [...itemsOffsetsAnimated.value];
   }, [itemsCount, outerSpacing, innerSpacing, addOffsetMargin, containerWidth]);
   const onItemLayout = useCallback((event, index) => {
     const {
@@ -117,13 +107,12 @@ const useScrollToItem = props => {
   }, [setSnapBreakpoints]);
   const focusIndex = useCallback((index, animated = true) => {
     if (index >= 0 && offsets.CENTER.length > index) {
-      const rtlIndex = FIX_RTL ? itemsCount - index - 1 : index;
       if (offsetType !== OffsetType.DYNAMIC) {
-        scrollTo(offsets[offsetType][rtlIndex], animated);
+        scrollTo(offsets[offsetType][index], animated);
       } else {
         const movingLeft = index < currentIndex.current;
-        currentIndex.current = rtlIndex;
-        scrollTo(movingLeft ? offsets[OffsetType.RIGHT][rtlIndex] : offsets[OffsetType.LEFT][rtlIndex], animated);
+        currentIndex.current = index;
+        scrollTo(movingLeft ? offsets[OffsetType.RIGHT][index] : offsets[OffsetType.LEFT][index], animated);
       }
     }
   }, [offsets, offsetType, scrollTo]);

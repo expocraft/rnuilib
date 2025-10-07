@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useMemo, useEffect } from 'react';
 import TabBarContext from "./TabBarContext";
 import Reanimated, { runOnJS, useAnimatedReaction, useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
 import { Constants } from "../../commons/new";
-const FIX_RTL = Constants.isRTL;
+const FIX_RTL = Constants.isRTL && Constants.isAndroid;
 
 /**
  * @description: TabController's Page Carousel
@@ -94,7 +94,9 @@ function PageCarousel(props) {
       width: pageWidth
     }, style];
   }, [pageWidth, style]);
-  return <Reanimated.ScrollView {...others} style={_style} ref={carousel} horizontal pagingEnabled showsHorizontalScrollIndicator={false} onScroll={scrollHandler} scrollEventThrottle={16} contentOffset={initialOffset} // iOS only
+  return <Reanimated.ScrollView {...others} style={_style}
+  // @ts-expect-error should be fixed in version 3.5 (https://github.com/software-mansion/react-native-reanimated/pull/4881)
+  ref={carousel} horizontal pagingEnabled showsHorizontalScrollIndicator={false} onScroll={scrollHandler} scrollEventThrottle={16} contentOffset={initialOffset} // iOS only
   onLayout={scrollToInitial} // Android only
   onMomentumScrollEnd={handleOnMomentumScrollEnd} // TODO: workaround for useAnimatedScrollHandler.onMomentumEnd not being called (https://github.com/software-mansion/react-native-reanimated/issues/2735)
   />;

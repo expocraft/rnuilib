@@ -5,7 +5,6 @@ interface TabControllerContext {
     items?: any[];
     itemsCount: number;
     asCarousel?: boolean;
-    nestedInScrollView?: boolean;
     containerWidth: number;
     pageWidth: number;
     /** static page index */

@@ -11,6 +11,7 @@ import { Colors, Spacings, Typography } from "../../style";
 import FadedScrollView from "../fadedScrollView";
 import useScrollToItem from "./useScrollToItem";
 import { useDidUpdate } from "../../hooks";
+const FIX_RTL = Constants.isRTL && Constants.isAndroid;
 const DEFAULT_HEIGHT = 48;
 const DEFAULT_LABEL_STYLE = {
   ...Typography.text80M,
@@ -83,7 +84,7 @@ const TabBar = props => {
     // @ts-expect-error TODO: typing bug
     scrollViewRef: tabBar,
     itemsCount,
-    selectedIndex: currentPage.value,
+    selectedIndex: FIX_RTL ? itemsCount - currentPage.value - 1 : currentPage.value,
     containerWidth,
     offsetType: centerSelected ? useScrollToItem.offsetType.CENTER : useScrollToItem.offsetType.DYNAMIC
   });
@@ -149,7 +150,7 @@ const TabBar = props => {
   }, [labelColor, selectedLabelColor]);
   return <View style={_containerStyle} key={key} bg-$backgroundElevated>
       <FadedScrollView ref={tabBar} horizontal showsHorizontalScrollIndicator={false} showStartFader startFaderProps={faderProps} showEndFader endFaderProps={faderProps} contentContainerStyle={scrollViewContainerStyle} testID={testID} onContentSizeChange={onContentSizeChange} onLayout={onLayout}>
-        <View style={tabBarContainerStyle} accessibilityRole={Constants.isIOS ? 'tabbar' : 'tablist'}>{tabBarItems}</View>
+        <View style={tabBarContainerStyle}>{tabBarItems}</View>
         {itemsCount > 1 && <Reanimated.View style={[styles.selectedIndicator, indicatorStyle, _indicatorTransitionStyle]} />}
       </FadedScrollView>
     </View>;

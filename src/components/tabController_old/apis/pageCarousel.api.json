@@ -7,14 +7,11 @@
   "extendsLink": ["https://reactnative.dev/docs/scrollview"],
   "example": "https://github.com/wix/react-native-ui-lib/blob/master/demo/src/screens/componentScreens/TabControllerScreen/index.tsx",
   "images": [],
-  "props": [],
   "snippet": [
-    "<TabController>",
-    "  <TabController.PageCarousel>",
-    "    {_.map(items, (item, key) => {",
-    "     return <TabController.TabPage index={key}/>;",
-    "    })}",
-    "  </TabController.PageCarousel>",
-    "</TabController>"
+    "<TabController.PageCarousel>",
+    "  {_.map(items, (item, key) => {",
+    "   return ($1);",
+    "  })}",
+    "</TabController.PageCarousel>"
   ]
 }

@@ -84,7 +84,7 @@ export { default as StackAggregator, StackAggregatorProps } from './components/s
 export { default as StateScreen, StateScreenProps } from './components/stateScreen';
 export { default as Stepper, StepperProps } from './components/stepper';
 export { default as Switch, SwitchProps } from './components/switch';
-export { default as TabController, TabControllerProps, TabControllerBarProps, TabControllerItemProps, TabControllerImperativeMethods } from './components/tabController';
+export { default as TabController, TabControllerProps, TabControllerBarProps, TabControllerItemProps, TabControllerImperativeMethods } from './components/tabController_old';
 export { default as Timeline, TimelineProps, TimelinePointProps, TimelineLineProps, TimelineStateTypes, TimelinePointTypes, TimelineLineTypes } from './components/timeline';
 export { default as Text, TextProps } from './components/text';
 export { default as TextArea } from './components/textArea';

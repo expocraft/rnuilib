@@ -3,9 +3,9 @@ import _isEmpty from "lodash/isEmpty";
 import _isUndefined from "lodash/isUndefined";
 import _cloneDeep from "lodash/cloneDeep";
 // TODO: support commented props
-import React, { useCallback, useContext, useEffect, useRef, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import Reanimated, { runOnJS, useAnimatedReaction, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import Reanimated, { runOnJS, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { Colors, Typography, Spacings } from "../../style";
 import Badge from "../badge";
@@ -39,7 +39,6 @@ export default function TabBarItem({
   ignore,
   style,
   spreadItems,
-  onPress,
   ...props
 }) {
   const {
@@ -52,7 +51,6 @@ export default function TabBarItem({
   // JSON.parse(JSON.stringify is due to an issue with reanimated
   const sharedLabelStyle = useSharedValue(JSON.parse(JSON.stringify(StyleSheet.flatten(labelStyle))));
   const sharedSelectedLabelStyle = useSharedValue(JSON.parse(JSON.stringify(StyleSheet.flatten(selectedLabelStyle))));
-  const [isSelected, setIsSelected] = useState(currentPage.value === index);
 
   // NOTE: We clone these color values in refs because they might contain a PlatformColor value
   //       which throws an error (see https://github.com/software-mansion/react-native-reanimated/issues/3164)
@@ -72,11 +70,6 @@ export default function TabBarItem({
       }, index);
     }
   }, []);
-  useAnimatedReaction(() => currentPage.value === index, (isSelected, prevIsSelected) => {
-    if (isSelected !== prevIsSelected) {
-      runOnJS(setIsSelected)(isSelected);
-    }
-  });
   const onLayout = useCallback(event => {
     const {
       width
@@ -126,14 +119,11 @@ export default function TabBarItem({
       flex
     }, style, constantWidthStyle, pressStyle];
   }, [style, spreadItems]);
-  const accessibilityState = useMemo(() => ({
-    selected: isSelected
-  }), [isSelected]);
   const gesture = Gesture.Tap().maxDuration(60000).onEnd(() => {
     if (!ignore) {
       setCurrentIndex(index);
     }
-    onPress && runOnJS(onPress)(index);
+    props.onPress && runOnJS(props.onPress)(index);
   }).onFinalize(() => {
     isPressed.value = false;
   }).onTouchesDown(() => {
@@ -142,7 +132,7 @@ export default function TabBarItem({
   return <GestureDetector gesture={gesture}>
       <View reanimated
     // @ts-expect-error
-    ref={itemRef} style={_style} onLayout={onLayout} testID={testID} accessible accessibilityRole="tab" accessibilityState={accessibilityState}>
+    ref={itemRef} style={_style} onLayout={onLayout} testID={testID}>
         {leadingAccessory}
         {icon && <Reanimated.Image source={icon} style={[!_isUndefined(label) && styles.tabItemIconWithLabel, animatedIconStyle]} />}
         {!_isEmpty(label) && <Reanimated.Text {...labelProps} fsTagName={'unmask'} style={[styles.tabItemLabel, labelStyle, animatedLabelStyle, animatedLabelColorStyle]}>

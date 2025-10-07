@@ -29,10 +29,6 @@ export interface TabControllerProps {
      */
     asCarousel?: boolean;
     /**
-     * Pass when TabController is render inside a ScrollView (with a header)
-     */
-    nestedInScrollView?: boolean;
-    /**
      * Pass for custom carousel page width
      */
     carouselPageWidth?: number;

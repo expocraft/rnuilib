@@ -101,5 +101,5 @@ interface Props extends TabControllerItemProps {
  * @example: https://github.com/wix/react-native-ui-lib/blob/master/demo/src/screens/componentScreens/TabControllerScreen/index.tsx
  * @notes: Must be rendered as a direct child of TabController.TabBar.
  */
-export default function TabBarItem({ index, label, labelColor, selectedLabelColor, labelStyle, labelProps, selectedLabelStyle, icon, badge, leadingAccessory, trailingAccessory, uppercase, activeOpacity, backgroundColor, activeBackgroundColor, testID, ignore, style, spreadItems, onPress, ...props }: Props): React.JSX.Element;
+export default function TabBarItem({ index, label, labelColor, selectedLabelColor, labelStyle, labelProps, selectedLabelStyle, icon, badge, leadingAccessory, trailingAccessory, uppercase, activeOpacity, backgroundColor, activeBackgroundColor, testID, ignore, style, spreadItems, ...props }: Props): React.JSX.Element;
 export {};

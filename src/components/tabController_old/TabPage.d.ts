@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react';
-import { type StyleProp, type ViewStyle } from 'react-native';
 export interface TabControllerPageProps {
     /**
      * The index of the the TabPage
@@ -21,13 +20,9 @@ export interface TabControllerPageProps {
      * Used as a testing identifier
      */
     testID?: string;
-    /**
-     * add style properties to tab page
-     */
-    style?: StyleProp<ViewStyle>;
 }
 /**
  * @description: TabController's TabPage
  * @example: https://github.com/wix/react-native-ui-lib/blob/master/demo/src/screens/componentScreens/TabControllerScreen/index.tsx
  */
-export default function TabPage({ testID, index, lazy, renderLoading, style, lazyLoadTime, ...props }: PropsWithChildren<TabControllerPageProps>): React.JSX.Element;
+export default function TabPage({ testID, index, lazy, renderLoading, lazyLoadTime, ...props }: PropsWithChildren<TabControllerPageProps>): React.JSX.Element;
