@@ -1,28 +1,28 @@
-import _isEmpty from "lodash/isEmpty";
-import _isUndefined from "lodash/isUndefined";
-import _isNil from "lodash/isNil";
-import _toLower from "lodash/toLower";
-import _split from "lodash/split";
-import React, { useMemo, forwardRef } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Colors, BorderRadiuses } from "../../style";
-import { extractAccessibilityProps } from "../../commons/modifiers";
-import Badge from "../badge";
-import View from "../view";
-import Text from "../text";
-import Image from "../image";
+import _isEmpty from 'lodash/isEmpty';
+import _isUndefined from 'lodash/isUndefined';
+import _isNil from 'lodash/isNil';
+import _toLower from 'lodash/toLower';
+import _split from 'lodash/split';
+import React, {useMemo, forwardRef} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Colors, BorderRadiuses} from '../../style';
+import {extractAccessibilityProps} from '../../commons/modifiers';
+import Badge from '../badge';
+import View from '../view';
+import Text from '../text';
+import Image from '../image';
 // @ts-ignore
-import AnimatedImage from "../animatedImage";
-import * as AvatarHelper from "../../helpers/AvatarHelper";
-import { useThemeProps } from "../../hooks";
-import { isSvg } from "../../utils/imageUtils";
-export let BadgePosition = /*#__PURE__*/function (BadgePosition) {
-  BadgePosition["TOP_RIGHT"] = "TOP_RIGHT";
-  BadgePosition["TOP_LEFT"] = "TOP_LEFT";
-  BadgePosition["BOTTOM_RIGHT"] = "BOTTOM_RIGHT";
-  BadgePosition["BOTTOM_LEFT"] = "BOTTOM_LEFT";
+import AnimatedImage from '../animatedImage';
+import * as AvatarHelper from '../../helpers/AvatarHelper';
+import {useThemeProps} from '../../hooks';
+import {isSvg} from '../../utils/imageUtils';
+export let BadgePosition = /*#__PURE__*/ (function (BadgePosition) {
+  BadgePosition['TOP_RIGHT'] = 'TOP_RIGHT';
+  BadgePosition['TOP_LEFT'] = 'TOP_LEFT';
+  BadgePosition['BOTTOM_RIGHT'] = 'BOTTOM_RIGHT';
+  BadgePosition['BOTTOM_LEFT'] = 'BOTTOM_LEFT';
   return BadgePosition;
-}({});
+})({});
 const DEFAULT_BADGE_SIZE = 10;
 /**
  * @description: Avatar component for displaying user profile images
@@ -58,10 +58,7 @@ const Avatar = forwardRef((props, ref) => {
     onPress,
     children
   } = themeProps;
-  const {
-    size: _badgeSize,
-    borderWidth: badgeBorderWidth = 0
-  } = badgeProps;
+  const {size: _badgeSize, borderWidth: badgeBorderWidth = 0} = badgeProps;
   const badgeSize = _badgeSize || DEFAULT_BADGE_SIZE;
   const _baseContainerStyle = useMemo(() => {
     return {
@@ -129,15 +126,26 @@ const Avatar = forwardRef((props, ref) => {
   }, [_baseContainerStyle, containerStyle]);
   const textStyle = useMemo(() => {
     const typography = AvatarHelper.getInitialsTypography(size);
-    return [typography, initialsStyle, {
-      color: labelColor
-    }];
+    return [
+      typography,
+      initialsStyle,
+      {
+        color: labelColor
+      }
+    ];
   }, [size, initialsStyle, labelColor]);
   const textContainerStyle = useMemo(() => {
     const hasImage = !_isUndefined(source);
-    return [styles.initialsContainer, {
-      backgroundColor: _backgroundColor
-    }, hasImage && styles.initialsContainerWithInset];
+    return [
+      styles.initialsContainer,
+      {
+        backgroundColor: _backgroundColor
+      },
+      hasImage && {
+        ...styles.initialsContainerWithInset,
+        position: 'absolute'
+      }
+    ];
   }, [source, _backgroundColor]);
   const accessibilityProps = useMemo(() => {
     return extractAccessibilityProps(props);
@@ -149,23 +157,46 @@ const Avatar = forwardRef((props, ref) => {
     if (source !== undefined) {
       // Looks like reanimated does not support SVG
       const ImageContainer = animate && !isSvg(source) ? AnimatedImage : Image;
-      return <ImageContainer style={_imageStyle} source={source} onLoadStart={onImageLoadStart} onLoadEnd={onImageLoadEnd} onError={onImageLoadError} testID={`${testID}.image`} width={size} height={size} containerStyle={_baseContainerStyle} {...imageProps} />;
+      return (
+        <ImageContainer
+          style={_imageStyle}
+          source={source}
+          onLoadStart={onImageLoadStart}
+          onLoadEnd={onImageLoadEnd}
+          onError={onImageLoadError}
+          testID={`${testID}.image`}
+          width={size}
+          height={size}
+          containerStyle={_baseContainerStyle}
+          {...imageProps}
+        />
+      );
     }
   };
   const renderBadge = () => {
     if (!_isEmpty(badgeProps)) {
-      return <Badge testID={`${testID}.onlineBadge`} iconProps={{
-        tintColor: null
-      }} {...badgeProps} size={badgeSize} containerStyle={_badgePosition} />;
+      return (
+        <Badge
+          testID={`${testID}.onlineBadge`}
+          iconProps={{
+            tintColor: null
+          }}
+          {...badgeProps}
+          size={badgeSize}
+          containerStyle={_badgePosition}
+        />
+      );
     }
   };
   const renderRibbon = () => {
     if (!customRibbon && ribbonLabel) {
-      return <View style={_ribbonStyle}>
+      return (
+        <View style={_ribbonStyle}>
           <Text numberOfLines={1} text100 $textDefaultLight style={ribbonLabelStyle}>
             {ribbonLabel}
           </Text>
-        </View>;
+        </View>
+      );
     }
   };
   const renderCustomRibbon = () => {
@@ -174,18 +205,34 @@ const Avatar = forwardRef((props, ref) => {
     }
   };
   const Container = onPress ? TouchableOpacity : View;
-  return <Container style={_containerStyle} ref={ref} testID={testID} onPress={onPress} accessible={!_isUndefined(onPress)} accessibilityLabel={'Avatar'} accessibilityRole={onPress ? 'button' : 'image'} {...accessibilityProps}>
+
+  console.log('textContainerStyle', textContainerStyle);
+
+  return (
+    <Container
+      style={_containerStyle}
+      ref={ref}
+      testID={testID}
+      onPress={onPress}
+      accessible={!_isUndefined(onPress)}
+      accessibilityLabel={'Avatar'}
+      accessibilityRole={onPress ? 'button' : 'image'}
+      {...accessibilityProps}
+    >
       <View testID={`${testID}.container`} style={textContainerStyle}>
-        {!_isUndefined(text) && <Text numberOfLines={1} style={textStyle} testID={`${testID}.label`}>
+        {!_isUndefined(text) && (
+          <Text numberOfLines={1} style={textStyle} testID={`${testID}.label`}>
             {text}
-          </Text>}
+          </Text>
+        )}
       </View>
       {renderImage()}
       {renderBadge()}
       {renderCustomRibbon()}
       {renderRibbon()}
       {children}
-    </Container>;
+    </Container>
+  );
 });
 const styles = StyleSheet.create({
   initialsContainer: {
@@ -209,6 +256,6 @@ const styles = StyleSheet.create({
 
 // @ts-expect-error
 Avatar.badgePosition = BadgePosition;
-export { Avatar }; // For tests
+export {Avatar}; // For tests
 
 export default Avatar;
