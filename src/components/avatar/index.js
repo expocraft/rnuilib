@@ -206,8 +206,6 @@ const Avatar = forwardRef((props, ref) => {
   };
   const Container = onPress ? TouchableOpacity : View;
 
-  console.log('textContainerStyle', textContainerStyle);
-
   return (
     <Container
       style={_containerStyle}
